@@ -1,0 +1,33 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "INSTRUCAO[0]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[1]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[2]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[9]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[10]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK_50",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
