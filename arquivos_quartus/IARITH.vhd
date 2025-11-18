@@ -10,8 +10,8 @@ entity IARITH is
 		  KEY              : in  std_logic_vector(3 downto 0);
 		  LEDR             : out std_logic_vector(9 downto 0);
         --INSTRUCAO	: out STD_LOGIC_VECTOR( 12 downto 0);
-        DATA_IN : out STD_LOGIC_VECTOR(7 downto 0);
-		  DATA_OUT : out STD_LOGIC_VECTOR(7 downto 0);
+        DATA_IN : out STD_LOGIC_VECTOR(31 downto 0);
+		  DATA_OUT : out STD_LOGIC_VECTOR(31 downto 0);
 		  ADDRESS : out STD_LOGIC_VECTOR(7 downto 0);
 		  
 		  
@@ -42,7 +42,7 @@ architecture comportamento of IARITH is
 	 
 	 signal PdC : std_logic_vector(10 downto 0);
 	 
-	 signal saidaDadoRAM, in_UlaA_Resultado, in_UlaB, saidaULA : std_logic_vector(15 downto 0);
+	 signal saidaDadoRAM, in_UlaA_Resultado, in_UlaB, saidaULA, dadoEscrita : std_logic_vector(15 downto 0);
 	 
 	 signal sig_flagZero, PdCIn_flagZero, sig_flagMenor, PdCIn_flagMenor : std_logic;
 	 
@@ -110,16 +110,19 @@ architecture comportamento of IARITH is
         port map( entradaA_MUX => saidaDadoRAM,
                  entradaB_MUX =>  imediato,
                  seletor_MUX => PdC(7),
-                 saida_MUX => in_UlaB
+                 saida_MUX => dadoEscrita
 		   );
 			
-	   ACUMULADOR :  entity work.registradorGenerico generic map (larguraDados => 16)
-        port map( DIN => saidaULA,
-		            DOUT => in_UlaA_Resultado,
-						ENABLE => PdC(6),
-						CLK => CLK_1s,
-						RST => '0'
-						); 
+	   nomeComponente : entity work.bancoRegistradoresDiscretos   generic map (larguraDados => 32, larguraEndBancoRegs => 8)
+          port map ( clk => CLK_1s,
+              enderecoA => RA,
+              enderecoB => RB,
+              enderecoC => RD,
+              dadoEscritaC => dadoEscrita,
+              escreveC => PDC(6),
+              saidaA => in_UlaA_Resultado,
+              saidaB  => in_UlaB);
+				  
 						
 		ULA : entity work.ULA  generic map(larguraDados => 16)
           port map (entradaA => in_UlaA_Resultado,
