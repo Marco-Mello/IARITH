@@ -271,7 +271,6 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity DE0_CV_Default
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity DE0_CV_Default -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -entity DE0_CV_Default -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity DE0_CV_Default -section_id Top
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name VHDL_FILE discreto_muxGenericoNx1.vhd
 set_global_assignment -name VHDL_FILE discreto_muxGenerico2x1.vhd
 set_global_assignment -name VHDL_FILE discreto_mux32to1_32bits.vhd
@@ -283,11 +282,11 @@ set_global_assignment -name VHDL_FILE somadorGenerico_MAis1.vhd
 set_global_assignment -name VHDL_FILE memoriaROM.vhd
 set_global_assignment -name VHDL_FILE registradorGenerico.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
-set_global_assignment -name VHDL_FILE mux2x1_8Bits.vhd
 set_global_assignment -name VHDL_FILE ULA.vhd
 set_global_assignment -name VHDL_FILE memoriaRAM.vhd
 set_global_assignment -name VHDL_FILE UnidadeControle.vhd
-set_global_assignment -name VHDL_FILE mux2x1_16Bits.vhd
 set_global_assignment -name VHDL_FILE conversorHex7Seg.vhd
 set_global_assignment -name VHDL_FILE divisorGenerico.vhd
 set_global_assignment -name VHDL_FILE conversorHex7Seg_6casas.vhd
+set_global_assignment -name VHDL_FILE mux2x1_32Bits.vhd
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

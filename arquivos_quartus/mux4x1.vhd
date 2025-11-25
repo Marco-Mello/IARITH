@@ -1,17 +1,17 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity mux4x1_9Bits is
+entity mux4x1_10Bits is
   -- Total de bits das entradas e saidas
   
   port (
-    entradaA_MUX, entradaB_MUX, entradaC_MUX, entradaD_MUX   : in std_logic_vector(8 downto 0);
+    entradaA_MUX, entradaB_MUX, entradaC_MUX, entradaD_MUX   : in std_logic_vector(9 downto 0);
     seletor_MUX : in std_logic_vector (1 downto 0);
-    saida_MUX : out std_logic_vector(8 downto 0)
+    saida_MUX : out std_logic_vector(9 downto 0)
   );
 end entity;
 
-architecture comportamento of mux4x1_9Bits is
+architecture comportamento of mux4x1_10Bits is
 
   begin
   

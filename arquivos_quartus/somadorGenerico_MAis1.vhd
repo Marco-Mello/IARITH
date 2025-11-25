@@ -5,8 +5,8 @@ use ieee.numeric_std.all;          -- Biblioteca IEEE para funções aritmética
 entity somadorGenerico_Mais1 is
      port
     (
-        entrada : in STD_LOGIC_VECTOR(8 downto 0);
-        saida :  out STD_LOGIC_VECTOR(8 downto 0)
+        entrada : in STD_LOGIC_VECTOR(9 downto 0);
+        saida :  out STD_LOGIC_VECTOR(9 downto 0)
     );
 end entity;
 

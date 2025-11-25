@@ -18,20 +18,19 @@ architecture assincrona of memoriaROM is
 
 
 	
-  constant NOP  : std_logic_vector(3 downto 0) 	:= "0000";
-  constant LDA  : std_logic_vector(3 downto 0) 	:= "0001";
-  constant LDI  : std_logic_vector(3 downto 0) 	:= "0010";
-  constant STA  : std_logic_vector(3 downto 0) 	:= "0011";
+  constant NOP  : std_logic_vector(3 downto 0) 	:= "0000"; --NOP
+  constant LDM  	: std_logic_vector(3 downto 0) 	:= "0001"; --RD <= [M] 
+  constant LDi  : std_logic_vector(3 downto 0) 	:= "0010"; --RD <= Imed.
+  constant STM  : std_logic_vector(3 downto 0) 	:= "0011"; --[M] <= RA
   
-  constant SOMA : std_logic_vector(3 downto 0) 	:= "0100";
-  constant SOMAi : std_logic_vector(3 downto 0) := "0101";
+  constant ADD : std_logic_vector(3 downto 0) 	:= "0100"; --RD <= RA + RB
+  constant ADDi : std_logic_vector(3 downto 0) := "0101"; --RD <= RA + Imed.
   
-  constant CLS : std_logic_vector(3 downto 0) 	:= "0110";
-  constant JLS : std_logic_vector(3 downto 0) 	:= "0111";
-  constant CEQ : std_logic_vector(3 downto 0) 	:= "1000";
-  constant JEQ : std_logic_vector(3 downto 0) 	:= "1001";
+
+  constant JMP : std_logic_vector(3 downto 0) 	:= "0110"; -- PC <= Imed.
+  constant JEQ : std_logic_vector(3 downto 0) 	:= "0111"; -- (PC <= Imed.) if A = B
+  constant JLS : std_logic_vector(3 downto 0) 	:= "1000"; -- (PC <= Imed.) if A < B
   
-  constant JMP : std_logic_vector(3 downto 0) 	:= "1010";
   
   
   
@@ -42,38 +41,36 @@ architecture assincrona of memoriaROM is
   function initMemory
         return blocoMemoria is variable tmp : blocoMemoria := (others => (others => '0'));
   begin
+  
         -- Inicializa os endereços:
-        tmp(0) := LDI & "00000000" & "00000000"; -- 0
-        tmp(1) := STA & "00000000" & "00000000"; -- fib: 0 -> @0
-		  
-		  tmp(2) := LDI & "00000000" & "00000000"; -- 0
-        tmp(3) := STA & "00000000" & "00000001"; -- anterior: 0 -> @1
-		  
-        tmp(4) := LDI & "00000000" & "00000001"; -- 1
-        tmp(5) := STA & "00000000" & "00000010"; -- atual: 1 -> @2
-		  
-        tmp(6) := LDI & "00000000" & "00000000"; -- 0
-        tmp(7) := STA & "00000000" & "00000011"; -- prox: 0 -> @3
-		  
-        tmp(8) := LDI & "00000000" & "00001111"; -- 15
-        tmp(9) := STA & "00000000" & "00001010"; -- total: 15 -> @10
-		  
-		  
-		   
-		  
-		  tmp(10) := LDA & "00000000" & "00000001"; -- carrega anterior
-		  tmp(11) := SOMA & "00000000" & "00000010"; -- soma atual
-		  tmp(12) := STA & "00000000" & "00000011"; -- salva prox
-		  
-		  
-		  tmp(13) := LDA & "00000000" & "00000010"; -- carrega atual
-		  tmp(14) := STA & "00000000" & "00000001"; -- salva anterior
-		  
-		  tmp(15) := LDA & "00000000" & "00000011"; -- carrega prox
-		  tmp(16) := STA & "00000000" & "00000010"; -- salva atual
-        tmp(17) := STA & "00000000" & "00000000"; -- salva valor de fib
-		  tmp(18) := STA & "00000000" & "11111111"; -- printa no LED
-		  tmp(19) := JMP & "00000000" & "00001010"; -- pula para linha 10 (carrega atual)
+		 tmp(0)  := LDI  & "000" & "000" & "000" & x"00000000"; -- 0
+		 tmp(1)  := STM  & "000" & "000" & "000" & x"00000000"; -- fib: 0 -> @0
+
+		 tmp(2)  := LDI  & "000" & "000" & "000" & x"00000000"; -- 0
+		 tmp(3)  := STM  & "000" & "000" & "000" & x"00000001"; -- anterior: 0 -> @1
+
+		 tmp(4)  := LDI  & "000" & "000" & "000" & x"00000001"; -- 1
+		 tmp(5)  := STM  & "000" & "000" & "000" & x"00000002"; -- atual: 1 -> @2
+
+		 tmp(6)  := LDI  & "000" & "000" & "000" & x"00000000"; -- 0
+		 tmp(7)  := STM  & "000" & "000" & "000" & x"00000003"; -- prox: 0 -> @3
+
+		 tmp(8)  := LDI  & "000" & "000" & "000" & x"0000000F"; -- 15
+		 tmp(9)  := STM  & "000" & "000" & "000" & x"0000000A"; -- total: 15 -> @10
+
+
+		 tmp(10) := LDM  & "000" & "000" & "000" & x"00000001"; -- carrega anterior
+		 tmp(11) := ADD  &  "000"  & "000" & "000" & x"00000002"; -- ADD atual
+		 tmp(12) := STM  & "000" & "000" & "000" & x"00000003"; -- salva prox
+
+		 tmp(13) := LDM  & "000" & "000" & "000" & x"00000002"; -- carrega atual
+		 tmp(14) := STM  & "000" & "000" & "000" & x"00000001"; -- salva anterior
+
+		 tmp(15) := LDM  & "000" & "000" & "000" & x"00000003"; -- carrega prox
+		 tmp(16) := STM  & "000" & "000" & "000" & x"00000002"; -- salva atual
+		 tmp(17) := STM  & "000" & "000" & "000" & x"00000000"; -- salva valor de fib
+		 tmp(18) := STM  & "000" & "000" & "000" & x"0000003F"; -- printa no LED
+		 tmp(19) := JMP  & "000" & "000" & "000" & x"0000000A"; -- pula para linha 10 (carrega atual)
 		  
 		  
 		  
