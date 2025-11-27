@@ -10,12 +10,30 @@ entity IARITH is
 		  KEY              : in  std_logic_vector(3 downto 0);
 		  LEDR             : out std_logic_vector(9 downto 0);
         --INSTRUCAO	: out STD_LOGIC_VECTOR( 12 downto 0);
-        DATA_IN : out STD_LOGIC_VECTOR(31 downto 0);
-		  DATA_OUT : out STD_LOGIC_VECTOR(31 downto 0);
-		  ADDRESS : out STD_LOGIC_VECTOR(10 downto 0);
+        --DATA_IN : out STD_LOGIC_VECTOR(31 downto 0);
+		  --DATA_OUT : out STD_LOGIC_VECTOR(31 downto 0);
+		  --ADDRESS : out STD_LOGIC_VECTOR(10 downto 0);
 		  
 		  
 		  --TESTES
+		  aux_1_CLK : in STD_LOGIC;
+		  
+--		  debug_OPCODE : out std_logic_vector(3 downto 0);
+--		  	debug_EndMEM : out std_logic_vector(5 downto 0);
+--			debug_we : out std_logic;
+--			debug_re : out std_logic;
+--			debug_habilita : out std_logic;
+--			debug_dado_in : out std_logic_vector(31 downto 0);
+--			debug_dado_out : out std_logic_vector(31 downto 0);
+			
+			
+			debug_RA, debug_RB, debug_RD : out std_logic_vector(2 downto 0);
+			debug_escreveD : out std_logic;
+			debug_dadoEscritaD : out std_logic_vector (31 downto 0);
+			
+			debug_saidaULA, debug_inA, debug_inB : out std_logic_vector(31 downto 0);
+			
+--
 		  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : out STD_LOGIC_VECTOR(6 downto 0) 
     );
 	 
@@ -24,7 +42,7 @@ end entity;
 
 architecture comportamento of IARITH is
 
-	signal CLK_1s : std_logic;
+	signal CLK, aux_2_CLK : std_logic;
 
 	 signal entradaPC: std_logic_vector(9 downto 0);
 	 signal saidaPC: std_logic_vector(9 downto 0);
@@ -38,6 +56,9 @@ architecture comportamento of IARITH is
 	 alias imediato : std_logic_vector(31 downto 0) is INSTRUCAO(31 downto 0);
 	 alias EndMEM : std_logic_vector(5 downto 0) is INSTRUCAO(5 downto 0);
 	 alias EndPROG : std_logic_vector(9 downto 0) is INSTRUCAO(9 downto 0);
+	 
+	 
+	 
 	 alias RD : std_logic_vector(2 downto 0) is INSTRUCAO(40 downto 38);
 	 alias RA : std_logic_vector(2 downto 0) is INSTRUCAO(37 downto 35);
 	 alias RB : std_logic_vector(2 downto 0) is INSTRUCAO(34 downto 32);
@@ -61,12 +82,15 @@ architecture comportamento of IARITH is
 	 
 --	 BaseTempo : entity work.divisorGenerico
 --            generic map (divisor => 2000000)   -- divide por 50M.
---            port map (clk => CLOCK_50, saida_clk => CLK_1s);
+--            port map (clk => CLOCK_50, saida_clk => CLK);
 	 
 	 
 	 	 BaseTempo : entity work.divisorGenerico
-            generic map (divisor => 50000000)   -- divide por 50M.
-            port map (clk => CLOCK_50, saida_clk => CLK_1s);
+            generic map (divisor => 5000000)   -- divide por 50M.
+            port map (clk => CLOCK_50, saida_clk => aux_2_CLK);
+				
+			
+				
 
 		  
 		  Registrador_PC :  entity work.registradorGenerico
@@ -74,7 +98,7 @@ architecture comportamento of IARITH is
         port map( DIN => entradaPC,
 		            DOUT => saidaPC,
 						ENABLE => '1',
-						CLK => CLK_1s,
+						CLK => CLK,
 						RST => '0'
 						
 						);
@@ -98,7 +122,7 @@ architecture comportamento of IARITH is
         port map( DIN => sig_PC_Mais1,
 		            DOUT => imedRET,
 						ENABLE => PdC(8),
-						CLK => CLK_1s,
+						CLK => CLK,
 						RST => '0'
 						); 
 			
@@ -121,13 +145,13 @@ architecture comportamento of IARITH is
                  saida_MUX => saidaMuxA
 		   );
 			
-	   bancoRegistradores : entity work.bancoRegistradoresDiscretos   generic map (larguraDados => 32, larguraEndBancoRegs => 3)
-          port map ( clk => CLK_1s,
+	   bancoRegistradores : entity work.bancoRegistradores   generic map (larguraDados => 32, larguraEndBancoRegs => 3)
+          port map ( clk => CLK,
               enderecoA => RA,
               enderecoB => RB,
-              enderecoC => RD,
-              dadoEscritaC => saidaULA,
-              escreveC => PDC(6),
+              enderecoD => RD,
+              dadoEscritaD => saidaULA,
+              escreveD => PDC(6),
               saidaA => in_UlaA_Resultado,
               saidaB  => saidaRB);
 				  
@@ -139,7 +163,7 @@ architecture comportamento of IARITH is
                  saida_MUX => in_UlaB
 		   );	
 				  
-						
+--						
 		ULA : entity work.ULA  generic map(larguraDados => 32)
           port map (entradaA => in_UlaA_Resultado,
 							entradaB =>  in_UlaB,
@@ -149,13 +173,21 @@ architecture comportamento of IARITH is
 							flagMenor => sig_flagMenor
 							
 			 );
-			 
+--			 
+--		ULA_FP : entity work.ULA generic map(larguraDados => 32)
+--				port map (entradaA => in_UlaA_Resultado,
+--				entradaB => in_UlaB, saida => saidaULA,
+--				seletor => PdC(4 downto 2),
+--				flagZero => sig_flagZero,
+--				flagMenor => sig_flagMenor 
+--				);	 
+--			 
 			 
 --	   flagZero :  entity work.flipFlop
 --        port map( DIN => sig_flagZero,
 --		            DOUT => PdCIn_flagZero,
 --						ENABLE => PdC(3),
---						CLK => CLK_1s,
+--						CLK => CLK,
 --						RST => '0'
 --						); 
 --						
@@ -165,7 +197,7 @@ architecture comportamento of IARITH is
 --        port map( DIN => sig_flagMenor,
 --		            DOUT => PdCIn_flagMenor,
 --						ENABLE => PdC(2),
---						CLK => CLK_1s,
+--						CLK => CLK,
 --						RST => '0'
 --						); 
 						
@@ -177,7 +209,7 @@ architecture comportamento of IARITH is
 						habilita  => '1',
 						dado_in => in_UlaA_Resultado,
 						dado_out => saidaDadoRAM,
-						clk => CLK_1s
+						clk => CLK
 						);
 						
 						
@@ -230,13 +262,13 @@ architecture comportamento of IARITH is
 --									 EndMEM(2)	and
 --									 EndMEM(1)	and
 --									 EndMEM(0),
---						CLK => CLK_1s,
+--						CLK => CLK,
 --						RST => '0'
 --						); 
 --					  
 					  
 	
-LEDR(9 downto 6) <= entradaPC(3 downto 0);
+
 
 
 
@@ -254,7 +286,7 @@ LEDR(9 downto 6) <= entradaPC(3 downto 0);
 									 EndMEM(2)	and
 									 EndMEM(1)	and
 									 EndMEM(0),
-						CLK => CLK_1s,
+						CLK => CLK,
 						RST => '0'
 						); 
 
@@ -275,8 +307,39 @@ LEDR(9 downto 6) <= entradaPC(3 downto 0);
     );		  
 					  
 
-		--LEDR(0) <= CLK_1s;
+		--LEDR(0) <= CLK;
 		
+		
+		
+		--DEBUGS
+		LEDR(9 downto 6) <= saidaPC(3 downto 0);
+			CLK <=  aux_2_CLK; -- or aux_1_CLDK;
+			--LEDR(0) <=  aux_2_CLK;
+			
+			--debug_OPCODE <= OpCode;
+			
+--		  	debug_EndMEM <= EndMEM;
+--			debug_we <= PdC(0);
+--			debug_re <= PdC(1);
+--			debug_habilita <= '1';
+--			debug_dado_in <= in_UlaA_Resultado;
+--			debug_dado_out <= saidaDadoRAM;
+			
+			
+			debug_RA <= RA;
+			debug_RB <= RB;
+			debug_RD <= RD;
+			debug_escreveD <= PDC(6);
+			debug_dadoEscritaD <= saidaULA;
+			
+			
+			debug_saidaULA <= saidaULA;
+			debug_inA <= in_UlaA_Resultado;
+			debug_inB <= in_UlaB;
+			
+			
+			
+			
 		
 			
 		  

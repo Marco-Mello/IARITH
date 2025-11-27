@@ -1,0 +1,544 @@
+--library ieee;
+--use ieee.std_logic_1164.all;
+--use ieee.numeric_std.all;
+--
+--entity ULA_FP is
+--    generic
+--    (
+--        larguraDados : natural := 32
+--    );
+--    port
+--    (
+--      clk       : in  std_logic;
+--      rst_n     : in  std_logic;  -- active low reset
+--      entradaA, entradaB:  in STD_LOGIC_VECTOR((larguraDados-1) downto 0);
+--      seletor:  in STD_LOGIC_VECTOR(2 downto 0);
+--      saida:    out STD_LOGIC_VECTOR((larguraDados-1) downto 0);
+--      flagMenor: out std_logic;
+--      flagZero: out std_logic
+--    );
+--end entity ULA_FP;
+--
+--architecture comportamento of ULA_FP is
+--
+--  -- aliases para campos IEEE754 single (assume larguraDados = 32)
+--  alias signA  : std_logic is entradaA(larguraDados-1);
+--  alias expoA  : std_logic_vector(7 downto 0) is entradaA(larguraDados-2 downto larguraDados-9);
+--  alias fracA  : std_logic_vector(22 downto 0) is entradaA(larguraDados-10 downto 0);
+--
+--  alias signB  : std_logic is entradaB(larguraDados-1);
+--  alias expoB  : std_logic_vector(7 downto 0) is entradaB(larguraDados-2 downto larguraDados-9);
+--  alias fracB  : std_logic_vector(22 downto 0) is entradaB(larguraDados-10 downto 0);
+--
+--  -- mantissa normalizada (1 + frac) ou 0+frac se denormal
+--  signal mant_normA : std_logic_vector(23 downto 0);
+--  signal mant_normB : std_logic_vector(23 downto 0);
+--
+--  -- subtracao original (mantida)
+--  signal subtracao : STD_LOGIC_VECTOR((larguraDados-1) downto 0);
+--
+--  -- valid input for float add
+--  signal valid_in      : std_logic;
+--
+--  -- pipeline valid registers (SCALARs must be initialized with '0', not (others => '0'))
+--  signal valid_s1, valid_s2, valid_s3, valid_s4, valid_s5 : std_logic := '0';
+--
+--  -- STAGE1 outputs (registered)
+--  signal s1_expo_large  : integer range 0 to 255 := 0;
+--  signal s1_expo_small  : integer range 0 to 255 := 0;
+--  signal s1_mant_large  : unsigned(26 downto 0) := (others => '0'); -- mantissa in bits 26 downto 3 (GRS in 2..0)
+--  signal s1_mant_small  : unsigned(26 downto 0) := (others => '0');
+--  signal s1_sign_large  : std_logic := '0';
+--  signal s1_sign_small  : std_logic := '0';
+--  signal s1_sign_res    : std_logic := '0';
+--
+--  -- STAGE2 registers (after alignment)
+--  signal s2_expo_res    : integer range -1024 to 2048 := 0;
+--  signal s2_sign_large  : std_logic := '0';
+--  signal s2_sign_small  : std_logic := '0';
+--  signal s2_mant_large  : unsigned(26 downto 0) := (others => '0');
+--  signal s2_mant_small  : unsigned(26 downto 0) := (others => '0');
+--
+--  -- STAGE3 registers (after add/sub)
+--  signal s3_expo_res    : integer range -1024 to 2048 := 0;
+--  signal s3_sign_res    : std_logic := '0';
+--  signal s3_mant_res    : unsigned(27 downto 0) := (others => '0'); -- one extra bit for carry
+--  signal s3_op_add      : std_logic := '1'; -- '1' if addition performed
+--
+--  -- STAGE4 registers (after normalize/round) -> fed to stage5 (pack)
+--  signal s4_expo_res    : integer range -1024 to 2048 := 0;
+--  signal s4_sign_res    : std_logic := '0';
+--  signal s4_frac        : std_logic_vector(22 downto 0) := (others => '0');
+--
+--  -- STAGE5 output register
+--  signal resultado_pipe_out : std_logic_vector(31 downto 0) := (others => '0');
+--
+--  -- flags registered through pipeline (so they align with result)
+--  signal flagMenor_reg_stage : std_logic := '0';
+--  signal flagZero_reg_stage  : std_logic := '0';
+--
+--  -- combinational helper signals (outputs of combinational stage logic)
+--  signal l1_expo_large  : integer range 0 to 255 := 0;
+--  signal l1_expo_small  : integer range 0 to 255 := 0;
+--  signal l1_mant_large  : unsigned(26 downto 0) := (others => '0');
+--  signal l1_mant_small  : unsigned(26 downto 0) := (others => '0');
+--  signal l1_sign_large  : std_logic := '0';
+--  signal l1_sign_small  : std_logic := '0';
+--  signal l1_sign_res    : std_logic := '0';
+--
+--  signal l2_expo_res    : integer range -1024 to 2048 := 0;
+--  signal l2_sign_large  : std_logic := '0';
+--  signal l2_sign_small  : std_logic := '0';
+--  signal l2_mant_large  : unsigned(26 downto 0) := (others => '0');
+--  signal l2_mant_small  : unsigned(26 downto 0) := (others => '0');
+--
+--  signal l3_expo_res    : integer range -1024 to 2048 := 0;
+--  signal l3_sign_res    : std_logic := '0';
+--  signal l3_mant_res    : unsigned(27 downto 0) := (others => '0');
+--  signal l3_op_add      : std_logic := '1';
+--
+--  signal l4_expo_res    : integer range -1024 to 2048 := 0;
+--  signal l4_sign_res    : std_logic := '0';
+--  signal l4_frac        : std_logic_vector(22 downto 0) := (others => '0');
+--
+--begin
+--
+--  -- concurrent simple assignments
+--  mant_normA <= '1' & fracA when expoA /= "00000000" else '0' & fracA;
+--  mant_normB <= '1' & fracB when expoB /= "00000000" else '0' & fracB;
+--
+--  subtracao <= STD_LOGIC_VECTOR(unsigned(entradaA) - unsigned(entradaB));
+--
+--  valid_in <= '1' when seletor = "000" else '0';
+--
+--  ----------------------------------------------------------------------------
+--  -- STAGE 1: Unpack & choose large/small (combinational producing l1_*)
+--  ----------------------------------------------------------------------------
+--  process(entradaA, entradaB, mant_normA, mant_normB, expoA, expoB, signA, signB, valid_in)
+--    variable eA_v : integer;
+--    variable eB_v : integer;
+--    variable mA_v : unsigned(26 downto 0);
+--    variable mB_v : unsigned(26 downto 0);
+--  begin
+--    -- defaults
+--    l1_expo_large  <= 0;
+--    l1_expo_small  <= 0;
+--    l1_mant_large  <= (others => '0');
+--    l1_mant_small  <= (others => '0');
+--    l1_sign_large  <= '0';
+--    l1_sign_small  <= '0';
+--    l1_sign_res    <= '0';
+--
+--    if valid_in = '1' then
+--      eA_v := to_integer(unsigned(expoA));
+--      eB_v := to_integer(unsigned(expoB));
+--      if eA_v = 0 then eA_v := 1; end if;
+--      if eB_v = 0 then eB_v := 1; end if;
+--
+--      mA_v := (others => '0'); mB_v := (others => '0');
+--      mA_v(26 downto 3) := unsigned(mant_normA);
+--      mB_v(26 downto 3) := unsigned(mant_normB);
+--
+--      if eA_v > eB_v then
+--        l1_expo_large <= eA_v;
+--        l1_expo_small <= eB_v;
+--        l1_mant_large <= mA_v;
+--        l1_mant_small <= mB_v;
+--        l1_sign_large <= signA;
+--        l1_sign_small <= signB;
+--        l1_sign_res   <= signA;
+--      elsif eB_v > eA_v then
+--        l1_expo_large <= eB_v;
+--        l1_expo_small <= eA_v;
+--        l1_mant_large <= mB_v;
+--        l1_mant_small <= mA_v;
+--        l1_sign_large <= signB;
+--        l1_sign_small <= signA;
+--        l1_sign_res   <= signB;
+--      else
+--        -- equal exponents -> compare mantissas
+--        if unsigned(mant_normA) >= unsigned(mant_normB) then
+--          l1_expo_large <= eA_v;
+--          l1_expo_small <= eB_v;
+--          l1_mant_large <= mA_v;
+--          l1_mant_small <= mB_v;
+--          l1_sign_large <= signA;
+--          l1_sign_small <= signB;
+--          l1_sign_res   <= signA;
+--        else
+--          l1_expo_large <= eB_v;
+--          l1_expo_small <= eA_v;
+--          l1_mant_large <= mB_v;
+--          l1_mant_small <= mA_v;
+--          l1_sign_large <= signB;
+--          l1_sign_small <= signA;
+--          l1_sign_res   <= signB;
+--        end if;
+--      end if;
+--    end if;
+--  end process;
+--
+--  -- register outputs of stage1 into stage1 signals (s1_*) on clock
+--  process(clk)
+--  begin
+--    if rising_edge(clk) then
+--      if rst_n = '0' then
+--        s1_expo_large  <= 0;
+--        s1_expo_small  <= 0;
+--        s1_mant_large  <= (others => '0');
+--        s1_mant_small  <= (others => '0');
+--        s1_sign_large  <= '0';
+--        s1_sign_small  <= '0';
+--        s1_sign_res    <= '0';
+--        valid_s1 <= '0';
+--      else
+--        s1_expo_large  <= l1_expo_large;
+--        s1_expo_small  <= l1_expo_small;
+--        s1_mant_large  <= l1_mant_large;
+--        s1_mant_small  <= l1_mant_small;
+--        s1_sign_large  <= l1_sign_large;
+--        s1_sign_small  <= l1_sign_small;
+--        s1_sign_res    <= l1_sign_res;
+--        valid_s1 <= valid_in;
+--      end if;
+--    end if;
+--  end process;
+--
+--  ----------------------------------------------------------------------------
+--  -- STAGE 2: ALIGN - shift right the smaller mantissa by diff with sticky
+--  -- combinational -> produce l2_* then registered
+--  ----------------------------------------------------------------------------
+--  process(s1_expo_large, s1_expo_small, s1_mant_large, s1_mant_small, s1_sign_large, s1_sign_small, s1_sign_res, valid_s1)
+--    variable diff : integer;
+--    variable small_shifted : unsigned(26 downto 0);
+--    variable sticky_v : std_logic;
+--    variable i : integer;
+--  begin
+--    -- defaults
+--    l2_expo_res   <= s1_expo_large;
+--    l2_sign_large <= s1_sign_large;
+--    l2_sign_small <= s1_sign_small;
+--    l2_mant_large <= s1_mant_large;
+--    l2_mant_small <= s1_mant_small;
+--    valid_s2 <= '0';
+--
+--    if valid_s1 = '1' then
+--      diff := s1_expo_large - s1_expo_small;
+--      if diff < 0 then diff := 0; end if;
+--
+--      if diff = 0 then
+--        small_shifted := s1_mant_small;
+--        sticky_v := '0';
+--      elsif diff >= 27 then
+--        small_shifted := (others => '0');
+--        sticky_v := '0';
+--        for i in 0 to 26 loop
+--          if s1_mant_small(i) = '1' then
+--            sticky_v := '1';
+--            exit;
+--          end if;
+--        end loop;
+--        if sticky_v = '1' then
+--          small_shifted(0) := '1';
+--        end if;
+--      else
+--        sticky_v := '0';
+--        for i in 0 to diff-1 loop
+--          if s1_mant_small(i) = '1' then
+--            sticky_v := '1';
+--            exit;
+--          end if;
+--        end loop;
+--        small_shifted := shift_right(s1_mant_small, diff);
+--        if sticky_v = '1' then
+--          small_shifted(0) := '1';
+--        end if;
+--      end if;
+--
+--      l2_expo_res   <= s1_expo_large;
+--      l2_sign_large <= s1_sign_large;
+--      l2_sign_small <= s1_sign_small;
+--      l2_mant_large <= s1_mant_large;
+--      l2_mant_small <= small_shifted;
+--      valid_s2 <= '1';
+--    end if;
+--  end process;
+--
+--  -- register l2_* into s2_* on clock
+--  process(clk)
+--  begin
+--    if rising_edge(clk) then
+--      if rst_n = '0' then
+--        s2_expo_res   <= 0;
+--        s2_sign_large <= '0';
+--        s2_sign_small <= '0';
+--        s2_mant_large <= (others => '0');
+--        s2_mant_small <= (others => '0');
+--        valid_s2 <= '0';
+--      else
+--        s2_expo_res   <= l2_expo_res;
+--        s2_sign_large <= l2_sign_large;
+--        s2_sign_small <= l2_sign_small;
+--        s2_mant_large <= l2_mant_large;
+--        s2_mant_small <= l2_mant_small;
+--        valid_s2 <= valid_s2; -- pass through (keeps previous combinational-driven value)
+--      end if;
+--    end if;
+--  end process;
+--
+--  ----------------------------------------------------------------------------
+--  -- STAGE 3: ADD / SUB mantissas (combinational)
+--  ----------------------------------------------------------------------------
+--  process(s2_mant_large, s2_mant_small, s2_sign_large, s2_sign_small, s2_expo_res, valid_s2)
+--    -- variables MUST be declared here (before begin of the process body)
+--    variable mlarge_v : unsigned(28 downto 0);
+--    variable msmall_v : unsigned(28 downto 0);
+--    variable res_v    : unsigned(28 downto 0);
+--    variable signs_equal : boolean;
+--  begin
+--    -- defaults
+--    l3_expo_res <= s2_expo_res;
+--    l3_sign_res <= '0';
+--    l3_mant_res <= (others => '0');
+--    l3_op_add   <= '1';
+--    valid_s3 <= '0';
+--
+--    if valid_s2 = '1' then
+--      -- widen mantissas into higher width to handle carry and GRS bits
+--      mlarge_v := (others => '0');
+--      msmall_v := (others => '0');
+--
+--      -- place s2_mant_* into bits [28 downto 2] (keep 2..0 for GRS/LSB)
+--      mlarge_v(28 downto 2) := ('0' & s2_mant_large); -- one extra leading zero to allow carry
+--      msmall_v(28 downto 2) := ('0' & s2_mant_small);
+--
+--      signs_equal := (s2_sign_large = s2_sign_small);
+--
+--      if signs_equal then
+--        res_v := mlarge_v + msmall_v;
+--        l3_op_add <= '1';
+--        l3_sign_res <= s2_sign_large;
+--      else
+--        -- subtraction: large - small (we ensured large is the greater magnitude earlier)
+--        if mlarge_v >= msmall_v then
+--          res_v := mlarge_v - msmall_v;
+--          l3_sign_res <= s2_sign_large;
+--        else
+--          res_v := msmall_v - mlarge_v;
+--          l3_sign_res <= s2_sign_small;
+--        end if;
+--        l3_op_add <= '0';
+--      end if;
+--
+--      -- reduce to 28 bits (we keep 27..0), but res_v may be 29 bits; store appropriate slice
+--      l3_expo_res <= s2_expo_res;
+--      l3_mant_res <= res_v(27 downto 0);
+--      l3_op_add   <= l3_op_add;
+--      valid_s3 <= '1';
+--    end if;
+--  end process;
+--
+--  -- register stage3 outputs
+--  process(clk)
+--  begin
+--    if rising_edge(clk) then
+--      if rst_n = '0' then
+--        s3_expo_res <= 0;
+--        s3_sign_res <= '0';
+--        s3_mant_res <= (others => '0');
+--        s3_op_add   <= '1';
+--        valid_s3 <= '0';
+--      else
+--        s3_expo_res <= l3_expo_res;
+--        s3_sign_res <= l3_sign_res;
+--        s3_mant_res <= l3_mant_res;
+--        s3_op_add   <= l3_op_add;
+--        valid_s3 <= valid_s3; -- pass through
+--      end if;
+--    end if;
+--  end process;
+--
+--  ----------------------------------------------------------------------------
+--  -- STAGE 4: NORMALIZE + ROUND (combinational)
+--  ----------------------------------------------------------------------------
+--  process(s3_mant_res, s3_expo_res, s3_sign_res, s3_op_add, valid_s3)
+--    variable mant_v : unsigned(27 downto 0);
+--    variable pos_high : integer;
+--    variable shift_left_count : integer;
+--    variable shift_right_count : integer;
+--    variable sticky_local : std_logic;
+--    variable rounded_mant : unsigned(27 downto 0);
+--    variable expo_v : integer;
+--    variable i : integer;
+--  begin
+--    l4_expo_res <= s3_expo_res;
+--    l4_sign_res <= s3_sign_res;
+--    l4_frac     <= (others => '0');
+--    valid_s4    <= '0';
+--
+--    if valid_s3 = '1' then
+--      mant_v := s3_mant_res;
+--      expo_v := s3_expo_res;
+--      -- if addition produced carry at MSB (bit 27) then shift right by 1 and increment exponent
+--      if mant_v(27) = '1' then
+--        sticky_local := '0';
+--        if mant_v(0) = '1' then sticky_local := '1'; end if;
+--        mant_v := shift_right(mant_v, 1);
+--        if sticky_local = '1' then mant_v(0) := '1'; end if;
+--        expo_v := expo_v + 1;
+--      else
+--        -- subtraction result: find highest 1 and left-shift to normalize (so MSB at bit 26)
+--        pos_high := -1;
+--        for i in 27 downto 0 loop
+--          if mant_v(i) = '1' then
+--            pos_high := i;
+--            exit;
+--          end if;
+--        end loop;
+--
+--        if pos_high = -1 then
+--          -- result zero
+--          l4_expo_res <= 0;
+--          l4_sign_res <= '0';
+--          l4_frac <= (others => '0');
+--          valid_s4 <= '1';
+--          return;
+--        end if;
+--
+--        if pos_high > 26 then
+--          shift_right_count := pos_high - 26;
+--          sticky_local := '0';
+--          for i in 0 to shift_right_count-1 loop
+--            if mant_v(i) = '1' then
+--              sticky_local := '1';
+--              exit;
+--            end if;
+--          end loop;
+--          mant_v := shift_right(mant_v, shift_right_count);
+--          if sticky_local = '1' then mant_v(0) := '1'; end if;
+--          expo_v := expo_v + shift_right_count;
+--        elsif pos_high < 26 then
+--          shift_left_count := 26 - pos_high;
+--          mant_v := shift_left(mant_v, shift_left_count);
+--          expo_v := expo_v - shift_left_count;
+--        end if;
+--      end if;
+--
+--      -- rounding: guard at bit 2, simple round-to-nearest
+--      rounded_mant := mant_v;
+--      if mant_v(2) = '1' then
+--        rounded_mant := mant_v + 1;
+--        if rounded_mant(27) = '1' then
+--          rounded_mant := shift_right(rounded_mant, 1);
+--          expo_v := expo_v + 1;
+--        end if;
+--      end if;
+--
+--      -- exponent overflow/underflow simple handling
+--      if expo_v >= 255 then
+--        l4_expo_res <= 255;
+--        l4_sign_res <= s3_sign_res;
+--        l4_frac <= (others => '0');
+--        valid_s4 <= '1';
+--        return;
+--      elsif expo_v <= 0 then
+--        l4_expo_res <= 0;
+--        l4_sign_res <= '0';
+--        l4_frac <= (others => '0');
+--        valid_s4 <= '1';
+--        return;
+--      end if;
+--
+--      -- extract fraction: rounded_mant bits [25 downto 3] -> fraction [22 downto 0]
+--      for i in 0 to 22 loop
+--        l4_frac(22 - i) <= std_logic(rounded_mant(25 - i));
+--      end loop;
+--
+--      l4_expo_res <= expo_v;
+--      l4_sign_res <= s3_sign_res;
+--      valid_s4 <= '1';
+--    end if;
+--  end process;
+--
+--  -- register stage4 outputs
+--  process(clk)
+--  begin
+--    if rising_edge(clk) then
+--      if rst_n = '0' then
+--        s4_expo_res <= 0;
+--        s4_sign_res <= '0';
+--        s4_frac     <= (others => '0');
+--        valid_s4 <= '0';
+--      else
+--        s4_expo_res <= l4_expo_res;
+--        s4_sign_res <= l4_sign_res;
+--        s4_frac     <= l4_frac;
+--        valid_s4 <= valid_s4; -- pass through
+--      end if;
+--    end if;
+--  end process;
+--
+--  ----------------------------------------------------------------------------
+--  -- STAGE 5: PACK & writeback (registered)  -- CORRIGIDO
+--  ----------------------------------------------------------------------------
+--  process(clk)
+--  begin
+--    if rising_edge(clk) then
+--      if rst_n = '0' then
+--        resultado_pipe_out <= (others => '0');
+--        flagMenor_reg_stage <= '0';
+--        flagZero_reg_stage  <= '0';
+--        valid_s5 <= '0';
+--      else
+--        if valid_s4 = '1' then
+--          if s4_expo_res = 255 then
+--            resultado_pipe_out(31) <= s4_sign_res;
+--            resultado_pipe_out(30 downto 23) <= (others => '1');
+--            resultado_pipe_out(22 downto 0) <= (others => '0');
+--          elsif s4_expo_res = 0 then
+--            resultado_pipe_out <= (others => '0');
+--          else
+--            resultado_pipe_out(31) <= s4_sign_res;
+--            resultado_pipe_out(30 downto 23) <= std_logic_vector(to_unsigned(s4_expo_res, 8));
+--            resultado_pipe_out(22 downto 0) <= s4_frac;
+--          end if;
+--
+--          if unsigned(entradaA) < unsigned(entradaB) then
+--            flagMenor_reg_stage <= '1';
+--          else
+--            flagMenor_reg_stage <= '0';
+--          end if;
+--
+--          if resultado_pipe_out = (others => '0') then
+--            flagZero_reg_stage <= '1';
+--          else
+--            flagZero_reg_stage <= '0';
+--          end if;
+--
+--          valid_s5 <= '1';
+--        else
+--          valid_s5 <= '0';
+--        end if;
+--      end if;
+--    end if;
+--  end process;
+--
+--  -- Final output mux
+--  process(resultado_pipe_out, subtracao, entradaB, seletor)
+--  begin
+--    if seletor = "000" then
+--      saida <= resultado_pipe_out;
+--    elsif seletor = "001" then
+--      saida <= subtracao;
+--    elsif seletor = "010" then
+--      saida <= entradaB;
+--    else
+--      saida <= entradaB;
+--    end if;
+--  end process;
+--
+--  -- output flags (registered)
+--  flagMenor <= flagMenor_reg_stage;
+--  flagZero  <= flagZero_reg_stage;
+--
+--end architecture comportamento;

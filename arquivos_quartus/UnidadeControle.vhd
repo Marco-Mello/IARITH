@@ -34,6 +34,8 @@ architecture comportamento of UnidadeControle is
   constant JEQ : std_logic_vector(3 downto 0) 	:= "0111"; -- (PC <= Imed.) if A = B
   constant JLS : std_logic_vector(3 downto 0) 	:= "1000"; -- (PC <= Imed.) if A < B
   
+  constant MOV : std_logic_vector(3 downto 0) 	:= "1001"; -- RD <= RB
+  
   
   
   
@@ -61,14 +63,15 @@ architecture comportamento of UnidadeControle is
 	 
 	 habLeituraMEM <= '1' when (OpCode = LDM) else '0';
 	 
-	 Op_ULA <= "000" when (OpCode = ADD) or (OpCode = ADDi) else
-				  "010"when (OpCode  = LDM) or (OpCode  = JEQ) or (OpCode  = JLS) else
+	 Op_ULA <= "000" when (OpCode = ADD) or (OpCode = ADDi) else --ADD
+				  "001" when (OpCode  = JEQ) else --SUB
+				  "010"when (OpCode  = LDM) or (OpCode  = JLS) else
 				  "111";
 				  
 	 
-	 Sel_RB_Imed_MEM <= '1' when (OpCode = ADD) or (OpCode = JEQ) or (OpCode = JLS)  else '0';
+	 Sel_RB_Imed_MEM <= '1' when (OpCode = ADD) or (OpCode = JEQ) or (OpCode = JLS) or (OpCode = MOV)  else '0';
 	 
-	 habilitaEscrita <= '1' when (OpCode = LDM) or (OpCode = LDi) or (OpCode = ADD) or (OpCode = ADDi) else '0';
+	 habilitaEscrita <= '1' when (OpCode = LDM) or (OpCode = LDi) or (OpCode = ADD) or (OpCode = ADDi) or (OpCode = MOV) else '0';
 	 
 	 
 	 Sel_Imed_MEM <= '1' when (OpCode = LDi) or (OpCode = ADDi) else '0';

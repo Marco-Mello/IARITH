@@ -1,7 +1,10 @@
 # do IARITH.do
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 17:02:50 on Nov 12,2025
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# Questa Altera Starter FPGA Edition-64 vcom 2025.2 Compiler 2025.05 May 31 2025
+# Start time: 11:38:56 on Nov 26,2025
 # vcom -work work IARITH.vho 
+# ** Note: (vcom-220) '/home/marcuxo/altera_lite/25.1std/questa_fse/linux_x86_64/../modelsim.ini' is used as the ini file.
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
@@ -14,24 +17,44 @@
 # -- Loading package cyclonev_components
 # -- Compiling entity IARITH
 # -- Compiling architecture structure of IARITH
-# End time: 17:02:51 on Nov 12,2025, Elapsed time: 0:00:01
+# End time: 11:38:56 on Nov 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 17:02:51 on Nov 12,2025
-# vcom -work work Waveform.vwf.vht 
+# Questa Altera Starter FPGA Edition-64 vcom 2025.2 Compiler 2025.05 May 31 2025
+# Start time: 11:38:56 on Nov 26,2025
+# vcom -work work Waveform5.vwf.vht 
+# ** Note: (vcom-220) '/home/marcuxo/altera_lite/25.1std/questa_fse/linux_x86_64/../modelsim.ini' is used as the ini file.
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling entity IARITH_vhd_vec_tst
 # -- Compiling architecture IARITH_arch of IARITH_vhd_vec_tst
-# End time: 17:02:51 on Nov 12,2025, Elapsed time: 0:00:00
+# End time: 11:38:56 on Nov 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vsim -novopt -c -t 1ps -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.IARITH_vhd_vec_tst 
-# Start time: 17:02:52 on Nov 12,2025
+# ** Note: (vsim-220) '/home/marcuxo/altera_lite/25.1std/questa_fse/linux_x86_64/../modelsim.ini' is used as the ini file.
+# vsim -voptargs="+acc" -c -t 1ps -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.IARITH_vhd_vec_tst 
+# Start time: 11:38:57 on Nov 26,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10908) Some optimizations are turned off because the +acc switch is in effect.
+# ** Note: (vopt-220) '/home/marcuxo/altera_lite/25.1std/questa_fse/linux_x86_64/../modelsim.ini' is used as the ini file.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Altera Starter FPGA Edition-64
+# //  Version 2025.2 linux_x86_64 May 31 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
-# Loading work.iarith_vhd_vec_tst(iarith_arch)
+# Loading work.iarith_vhd_vec_tst(iarith_arch)#1
 # Loading ieee.vital_timing(body)
 # Loading ieee.vital_primitives(body)
 # Loading altera.dffeas_pack
@@ -39,12 +62,52 @@
 # Loading altera_lnsim.altera_lnsim_components
 # Loading cyclonev.cyclonev_atom_pack(body)
 # Loading cyclonev.cyclonev_components
-# Loading work.iarith(structure)
+# Loading work.iarith(structure)#1
 # Loading ieee.std_logic_arith(body)
-# Loading cyclonev.cyclonev_io_obuf(arch)
-# Loading cyclonev.cyclonev_io_ibuf(arch)
-# Loading altera.dffeas(vital_dffeas)
-# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)
-# after#32
-# End time: 17:02:53 on Nov 12,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
+# Loading cyclonev.cyclonev_io_obuf(arch)#1
+# Loading cyclonev.cyclonev_io_ibuf(arch)#1
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#1
+# Loading altera.dffeas(vital_dffeas)#1
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#2
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#3
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#4
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#5
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#6
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#7
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#8
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#9
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#10
+# Loading altera.dffeas(vital_dffeas)#2
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#11
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#12
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#13
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#14
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#15
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#16
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#17
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#18
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#19
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#20
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#21
+# Loading altera.dffeas(vital_dffeas)#3
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#22
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#23
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#24
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#25
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#26
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#27
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#28
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#29
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#30
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#31
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#32
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#33
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#34
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#35
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#36
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#37
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#38
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)#39
+# after#37
+# End time: 11:38:58 on Nov 26,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1

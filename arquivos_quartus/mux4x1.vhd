@@ -15,9 +15,10 @@ architecture comportamento of mux4x1_10Bits is
 
   begin
   
-    saida_MUX <= entradaA_MUX when (seletor_MUX = "00") else
-					  entradaB_MUX when (seletor_MUX = "01") else
-					  entradaC_MUX when (seletor_MUX = "10") else
-					  entradaD_MUX when (seletor_MUX = "11");
+    saida_MUX <= entradaA_MUX when seletor_MUX = "00" else
+                 entradaB_MUX when seletor_MUX = "01" else
+                 entradaC_MUX when seletor_MUX = "10" else
+                 entradaD_MUX when seletor_MUX = "11" else
+                 (others => '0');  -- default evita latch
 					  
 end architecture;

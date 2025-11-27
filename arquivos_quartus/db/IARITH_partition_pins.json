@@ -20,6 +20,558 @@
 					"strict" : false
 				},
 				{
+					"name" : "debug_RA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RB[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RB[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RB[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_RD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_escreveD",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[3]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[4]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[5]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[6]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[7]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[8]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[9]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[10]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[11]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[12]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[13]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[14]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[15]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[16]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[17]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[18]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[19]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[20]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[21]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[22]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[23]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[24]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[25]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[26]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[27]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[28]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[29]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[30]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_dadoEscritaD[31]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[3]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[4]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[5]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[6]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[7]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[8]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[9]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[10]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[11]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[12]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[13]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[14]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[15]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[16]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[17]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[18]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[19]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[20]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[21]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[22]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[23]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[24]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[25]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[26]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[27]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[28]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[29]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[30]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_saidaULA[31]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[3]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[4]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[5]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[6]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[7]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[8]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[9]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[10]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[11]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[12]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[13]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[14]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[15]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[16]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[17]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[18]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[19]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[20]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[21]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[22]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[23]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[24]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[25]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[26]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[27]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[28]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[29]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[30]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inA[31]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[3]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[4]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[5]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[6]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[7]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[8]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[9]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[10]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[11]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[12]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[13]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[14]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[15]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[16]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[17]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[18]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[19]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[20]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[21]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[22]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[23]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[24]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[25]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[26]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[27]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[28]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[29]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[30]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_inB[31]",
+					"strict" : false
+				},
+				{
 					"name" : "HEX0[0]",
 					"strict" : false
 				},

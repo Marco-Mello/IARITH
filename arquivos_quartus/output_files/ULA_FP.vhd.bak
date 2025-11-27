@@ -1,0 +1,356 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+--------------------------------------------------------------------
+--  ULA_FP
+--  Unidade Lógica Aritmética para ponto flutuante IEEE-754 32 bits
+--  
+--  Operações:
+--    seletor = "000"  → A + B
+--    seletor = "001"  → A - B
+--    seletor = "010"  → passa B (MOV)
+--  
+--  Flags:
+--    flagZero  → saída == ±0  (IEEE: +0 = -0)
+--    flagMenor → A < B (IEEE: NaN => false)
+--
+--  Implementa:
+--    - Reconhecimento de NaN, Inf, Zero, Subnormal
+--    - Align / Add/Sub / Normalize / Round-to-nearest-even
+--    - Empacotamento (sinal + expoente + fração)
+--
+--------------------------------------------------------------------
+entity ULA_FP is
+  generic (
+    larguraDados : natural := 32  -- assume sempre 32 bits (float single)
+  );
+  port(
+    entradaA  : in  std_logic_vector(31 downto 0);
+    entradaB  : in  std_logic_vector(31 downto 0);
+    seletor   : in  std_logic_vector(2 downto 0);
+    saida     : out std_logic_vector(31 downto 0);
+    flagMenor : out std_logic;
+    flagZero  : out std_logic
+  );
+end entity;
+
+architecture comportamento of ULA_FP is
+
+  -------------------------------------------------------------------
+  -- Constantes do formato IEEE-754 single
+  -------------------------------------------------------------------
+  constant EXP_W  : integer := 8;     -- tamanho do expoente
+  constant FRAC_W : integer := 23;    -- tamanho da fração
+  constant BIAS   : integer := 127;   -- bias do expoente
+
+  -------------------------------------------------------------------
+  -- Sinais para separar campos A e B
+  -------------------------------------------------------------------
+  signal A_sign : std_logic;
+  signal A_exp  : std_logic_vector(7 downto 0);
+  signal A_frac : std_logic_vector(22 downt0 0);
+
+  signal B_sign : std_logic;
+  signal B_exp  : std_logic_vector(7 downto 0);
+  signal B_frac : std_logic_vector(22 downto 0);
+
+  -------------------------------------------------------------------
+  -- Sinais de identificação de casos especiais IEEE-754
+  -------------------------------------------------------------------
+  signal A_isNaN, A_isInf, A_isZero : std_logic;
+  signal B_isNaN, B_isInf, B_isZero : std_logic;
+
+  -------------------------------------------------------------------
+  -- Resultado final da operação
+  -------------------------------------------------------------------
+  signal result_vector : std_logic_vector(31 downto 0) := (others => '0');
+
+  -------------------------------------------------------------------
+  -- Função auxiliar: verifica se o valor é zero (+0 ou −0)
+  -------------------------------------------------------------------
+  function is_zero(v : std_logic_vector) return boolean is
+  begin
+    return (v(30 downto 0) = (others => '0'));
+  end function;
+
+begin
+
+  -------------------------------------------------------------------
+  -- Separação dos campos A e B
+  -------------------------------------------------------------------
+  A_sign <= entradaA(31);
+  A_exp  <= entradaA(30 downto 23);
+  A_frac <= entradaA(22 downto 0);
+
+  B_sign <= entradaB(31);
+  B_exp  <= entradaB(30 downto 23);
+  B_frac <= entradaB(22 downto 0);
+
+  -------------------------------------------------------------------
+  -- Identificação de valores especiais IEEE-754
+  -------------------------------------------------------------------
+  A_isNaN  <= '1' when (A_exp = x"FF" and A_frac /= (others=>'0')) else '0';
+  A_isInf  <= '1' when (A_exp = x"FF" and A_frac = (others=>'0')) else '0';
+  A_isZero <= '1' when (A_exp = x"00" and A_frac = (others=>'0')) else '0';
+
+  B_isNaN  <= '1' when (B_exp = x"FF" and B_frac /= (others=>'0')) else '0';
+  B_isInf  <= '1' when (B_exp = x"FF" and B_frac = (others=>'0')) else '0';
+  B_isZero <= '1' when (B_exp = x"00" and B_frac = (others=>'0')) else '0';
+
+  -------------------------------------------------------------------
+  -- PROCESSO PRINCIPAL
+  -- Implementa ADD, SUB e MOV com normas IEEE-754
+  -------------------------------------------------------------------
+  process(entradaA, entradaB, seletor,
+          A_sign, A_exp, A_frac, B_sign, B_exp, B_frac,
+          A_isNaN, A_isInf, A_isZero,
+          B_isNaN, B_isInf, B_isZero)
+  
+    -----------------------------------------------------------------
+    -- Variáveis locais para o FP adder/subtractor
+    -----------------------------------------------------------------
+    variable sa, sb : std_logic;
+    variable ea, eb : integer;
+    variable ma, mb : unsigned(23 downto 0);  -- mantissas sem bit oculto
+    variable Ma, Mb : unsigned(24 downto 0);  -- mantissas com bit oculto
+    variable diff   : integer;
+    variable op_sub : boolean;
+
+    variable res_sign : std_logic;
+    variable res_exp  : integer;
+    variable res_mant : unsigned(24 downto 0);
+
+    variable tmp : std_logic_vector(31 downto 0);
+
+  begin
+
+    -----------------------------------------------------------------
+    -- SELETOR = "010": apenas passa B (MOV)
+    -----------------------------------------------------------------
+    if seletor = "010" then
+      result_vector <= entradaB;
+      return;
+    end if;
+
+    -----------------------------------------------------------------
+    -- Tratamento de NaN
+    -- Regra IEEE: qualquer operação com NaN => NaN
+    -----------------------------------------------------------------
+    if A_isNaN = '1' then
+      result_vector <= entradaA;
+      return;
+    elsif B_isNaN = '1' then
+      result_vector <= entradaB;
+      return;
+    end if;
+
+    -----------------------------------------------------------------
+    -- Tratamento de infinitos
+    -----------------------------------------------------------------
+    if A_isInf = '1' or B_isInf = '1' then
+      
+      if seletor = "000" then
+        -- ADD
+        if A_isInf='1' and B_isInf='1' and A_sign/=B_sign then
+          -- +Inf + -Inf = NaN
+          result_vector <= "01111111110000000000000000000000";
+          return;
+        else
+          -- sinal igual -> mantém infinidade
+          if A_isInf='1' then result_vector <= entradaA; else result_vector <= entradaB; end if;
+          return;
+        end if;
+
+      elsif seletor = "001" then
+        -- SUB
+        if A_isInf='1' and B_isInf='1' and A_sign=B_sign then
+          -- Inf - Inf (mesmo sinal) = NaN
+          result_vector <= "01111111110000000000000000000000";
+          return;
+        elsif A_isInf='1' then
+          result_vector <= entradaA;
+          return;
+        else
+          -- B é infinito → A - ∞ = −∞
+          result_vector <= (not B_sign) & B_exp & B_frac;
+          return;
+        end if;
+      end if;
+
+    end if;
+
+    -----------------------------------------------------------------
+    -- Tratamento de zeros
+    -----------------------------------------------------------------
+    if A_isZero='1' and B_isZero='1' then
+      result_vector <= (others => '0'); -- produz +0
+      return;
+    end if;
+
+    -----------------------------------------------------------------
+    -- Unpack (extração do bit oculto)
+    -----------------------------------------------------------------
+    sa := A_sign;
+    sb := B_sign;
+
+    if A_exp = "00000000" then
+      ea := 0;              -- subnormal
+      Ma := unsigned('0' & A_frac);
+    else
+      ea := to_integer(unsigned(A_exp));
+      Ma := unsigned('1' & A_frac);
+    end if;
+
+    if B_exp = "00000000" then
+      eb := 0;              -- subnormal
+      Mb := unsigned('0' & B_frac);
+    else
+      eb := to_integer(unsigned(B_exp));
+      Mb := unsigned('1' & B_frac);
+    end if;
+
+    -----------------------------------------------------------------
+    -- Decide se é soma ou subtração
+    -----------------------------------------------------------------
+    op_sub := (seletor = "001");
+
+    -----------------------------------------------------------------
+    -- Alinhamento das mantissas
+    -----------------------------------------------------------------
+    diff := ea - eb;
+
+    if diff > 0 then
+      Mb := Mb srl diff;
+      res_exp := ea;
+    elsif diff < 0 then
+      Ma := Ma srl (-diff);
+      res_exp := eb;
+    else
+      res_exp := ea;
+    end if;
+
+    -----------------------------------------------------------------
+    -- Operação de soma ou subtração de magnitudes
+    -----------------------------------------------------------------
+    if op_sub = false then
+      -- ADD
+      if sa = sb then
+        res_mant := ('0' & Ma) + ('0' & Mb);
+        res_sign := sa;
+      else
+        -- sinais diferentes => subtração efetiva
+        if Ma >= Mb then
+          res_mant := ('0' & Ma) - ('0' & Mb);
+          res_sign := sa;
+        else
+          res_mant := ('0' & Mb) - ('0' & Ma);
+          res_sign := sb;
+        end if;
+      end if;
+    else
+      -- SUB (A - B) = A + (-B)
+      if sa /= sb then
+        -- sinais diferentes → soma magnitudes
+        res_mant := ('0' & Ma) + ('0' & Mb);
+        res_sign := sa;
+      else
+        -- sinais iguais → subtração magnitudes
+        if Ma >= Mb then
+          res_mant := ('0' & Ma) - ('0' & Mb);
+          res_sign := sa;
+        else
+          res_mant := ('0' & Mb) - ('0' & Ma);
+          -- sinal muda porque B > A em módulo
+          res_sign := NOT sa;
+        end if;
+      end if;
+    end if;
+
+    -----------------------------------------------------------------
+    -- Normalização do resultado
+    -----------------------------------------------------------------
+    if res_mant(24) = '1' then
+      -- overflow no bit oculto → shift right
+      res_mant := res_mant srl 1;
+      res_exp := res_exp + 1;
+    else
+      -- normalização para esquerda se necessário
+      while (res_mant(23) = '0' and res_exp > 0 and res_mant /= 0) loop
+        res_mant := res_mant sll 1;
+        res_exp := res_exp - 1;
+      end loop;
+    end if;
+
+    -----------------------------------------------------------------
+    -- Arredondamento (round to nearest even)
+    -- Usamos bit de guarda = res_mant(0)
+    -----------------------------------------------------------------
+    if res_mant(0) = '1' then
+      -- incrementa LSB se necessário
+      res_mant := res_mant + 2; -- +2 porque ignoramos bit sticky e guard
+    end if;
+
+    -----------------------------------------------------------------
+    -- Empacotamento IEEE-754
+    -----------------------------------------------------------------
+    if res_exp >= 255 then
+      -- overflow → infinito
+      result_vector <= res_sign & x"FF" & (others => '0');
+    elsif res_mant = 0 then
+      -- resultado zero
+      result_vector <= (others => '0');
+    else
+      result_vector(31) <= res_sign;
+      result_vector(30 downto 23) <= std_logic_vector(to_unsigned(res_exp,8));
+      result_vector(22 downto 0)  <= std_logic_vector(res_mant(22 downto 0));
+    end if;
+
+  end process;
+
+  -------------------------------------------------------------------
+  -- flagZero: verifica se o resultado é ±0
+  -------------------------------------------------------------------
+  flagZero <= '1' when is_zero(result_vector) else '0';
+
+  -------------------------------------------------------------------
+  -- flagMenor: comparação IEEE
+  -------------------------------------------------------------------
+  process(entradaA, entradaB, A_isNaN, B_isNaN)
+    variable sa, sb : std_logic;
+    variable magA, magB : unsigned(30 downto 0);
+  begin
+    -- NaN → comparação falsa
+    if A_isNaN='1' or B_isNaN='1' then
+      flagMenor <= '0';
+      return;
+    end if;
+
+    -- +0 == -0
+    if is_zero(entradaA) and is_zero(entradaB) then
+      flagMenor <= '0';
+      return;
+    end if;
+
+    sa := entradaA(31);
+    sb := entradaB(31);
+
+    magA := unsigned(entradaA(30 downto 0));
+    magB := unsigned(entradaB(30 downto 0));
+
+    if sa='1' and sb='0' then
+      flagMenor <= '1';
+    elsif sa='0' and sb='1' then
+      flagMenor <= '0';
+    else
+      if sa='0' then
+        flagMenor <= '1' when magA < magB else '0';
+      else
+        flagMenor <= '1' when magA > magB else '0';
+      end if;
+    end if;
+  end process;
+
+  saida <= result_vector;
+
+end architecture;

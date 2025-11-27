@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "11/25/2025 11:07:32"
+-- Generated on "11/26/2025 10:25:21"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          IARITH
 -- 
@@ -34,10 +34,8 @@ END IARITH_vhd_vec_tst;
 ARCHITECTURE IARITH_arch OF IARITH_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL ADDRESS : STD_LOGIC_VECTOR(10 DOWNTO 0);
+SIGNAL aux_1_CLK : STD_LOGIC;
 SIGNAL CLOCK_50 : STD_LOGIC;
-SIGNAL DATA_IN : STD_LOGIC_VECTOR(31 DOWNTO 0);
-SIGNAL DATA_OUT : STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL HEX0 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL HEX1 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL HEX2 : STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -48,28 +46,24 @@ SIGNAL KEY : STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL LEDR : STD_LOGIC_VECTOR(9 DOWNTO 0);
 COMPONENT IARITH
 	PORT (
-	ADDRESS : BUFFER STD_LOGIC_VECTOR(10 DOWNTO 0);
+	aux_1_CLK : IN STD_LOGIC;
 	CLOCK_50 : IN STD_LOGIC;
-	DATA_IN : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
-	DATA_OUT : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
-	HEX0 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
-	HEX1 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
-	HEX2 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
-	HEX3 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
-	HEX4 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
-	HEX5 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
+	HEX0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	HEX1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	HEX2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	HEX3 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	HEX4 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	HEX5 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 	KEY : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-	LEDR : BUFFER STD_LOGIC_VECTOR(9 DOWNTO 0)
+	LEDR : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
 	i1 : IARITH
 	PORT MAP (
 -- list connections between master ports and signals
-	ADDRESS => ADDRESS,
+	aux_1_CLK => aux_1_CLK,
 	CLOCK_50 => CLOCK_50,
-	DATA_IN => DATA_IN,
-	DATA_OUT => DATA_OUT,
 	HEX0 => HEX0,
 	HEX1 => HEX1,
 	HEX2 => HEX2,
@@ -79,6 +73,18 @@ BEGIN
 	KEY => KEY,
 	LEDR => LEDR
 	);
+
+-- aux_1_CLK
+t_prcs_aux_1_CLK: PROCESS
+BEGIN
+LOOP
+	aux_1_CLK <= '0';
+	WAIT FOR 10000 ps;
+	aux_1_CLK <= '1';
+	WAIT FOR 10000 ps;
+	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
+END LOOP;
+END PROCESS t_prcs_aux_1_CLK;
 
 -- CLOCK_50
 t_prcs_CLOCK_50: PROCESS

@@ -1,44 +1,108 @@
 m255
 K4
 z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+!s99 mlopt
+!s11e vcom 2025.2 2025.05, May 31 2025
 13
 !s112 1.1
 !i10d 8192
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/Marcuxo/Desktop/IARITH/arquivos_quartus/simulation/qsim
+Z2 d/home/marcuxo/IARITH_25/simulation/qsim
+T_opt
+!i145 1
+!i144 0
+!s110 1764167937
+VB30n6zfRhGmk5K[SF>Jcd3
+04 18 11 work iarith_vhd_vec_tst iarith_arch 1
+=1-7cb0c2b959ce-69271101-20e76-3339
+R1
+!s12f OEM100
+!s12b OEM100
+!s124 OEM10U2 
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim +acc
+tCvgOpt 0
+n@_opt
+OL;O;2025.2;82
 Eiarith
-Z1 w1762977766
-Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
-Z3 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
-Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
-Z5 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
-Z6 DPx6 altera 11 dffeas_pack 0 22 :S1C`o89Vbe5bV6`:6CaB3
-Z7 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
-Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z9 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z10 DPx6 altera 28 altera_primitives_components 0 22 z?[99Tn<@QGNik3V1c6ah1
-R0
-Z11 8IARITH.vho
-Z12 FIARITH.vho
-l0
-L38
-Vi[OKSSTQEASRGnI?7cH>J3
-!s100 g0YC6=`AeSf]==JT9?:fT0
-Z13 OV;C;10.5b;63
-32
-Z14 !s110 1762977771
-!i10b 1
-Z15 !s108 1762977770.000000
-Z16 !s90 -work|work|IARITH.vho|
-Z17 !s107 IARITH.vho|
-!i113 1
-Z18 o-work work
-Z19 tExplicit 1 CvgOpt 0
-Astructure
+Z3 w1764167935
+Z4 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 bidJP:nVBC?Z<0FfQ6c?51
+Z5 DPx8 cyclonev 19 cyclonev_components 0 22 B^l3n9Pbn_IzFF2INSB@J0
+Z6 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 IkVUgNVX366BneI70`VBS2
+Z7 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z8 DPx6 altera 11 dffeas_pack 0 22 HeG`SlgMb6=o0zVGZnEz^3
+Z9 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z10 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z11 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+Z12 DPx6 altera 28 altera_primitives_components 0 22 k4Yn[[d=9S17VVF>?>37I3
+!i122 62
 R2
-R3
+Z13 8IARITH.vho
+Z14 FIARITH.vho
+l0
+L39 1
+V:nS<<g1og1Ldc8MP>TG9[1
+!s100 <77U;LNCQjb<bSSW3J>8g3
+Z15 OL;C;2025.2;82
+32
+Z16 !s110 1764167936
+!i10b 1
+Z17 !s108 1764167936.000000
+Z18 !s90 -work|work|IARITH.vho|
+Z19 !s107 IARITH.vho|
+!i113 0
+Z20 o-work work
+Z21 tExplicit 1 CvgOpt 0
+Astructure
 R4
 R5
 R6
@@ -46,57 +110,62 @@ R7
 R8
 R9
 R10
-DEx4 work 6 iarith 0 22 i[OKSSTQEASRGnI?7cH>J3
-l135
-L48
-Vn32Uje:3Bj2g1`KYJ[hT00
-!s100 cQ<[agbh3nBUm<[QLCamR0
-R13
-32
-R14
-!i10b 1
+R11
+R12
+DEx4 work 6 iarith 0 22 :nS<<g1og1Ldc8MP>TG9[1
+!i122 62
+l966
+L56 10337
+Va0<lY@2QDnHJS>kPg7_VO1
+!s100 l^d8akbXndc4MmbmWhCd62
 R15
+32
 R16
+!i10b 1
 R17
-!i113 1
 R18
 R19
+!i113 0
+R20
+R21
 Eiarith_vhd_vec_tst
-Z20 w1762977765
-R8
-R9
-R0
-Z21 8Waveform.vwf.vht
-Z22 FWaveform.vwf.vht
+Z22 w1764167934
+R10
+R11
+!i122 63
+R2
+Z23 8Waveform5.vwf.vht
+Z24 FWaveform5.vwf.vht
 l0
-L31
-V49;`nf_b9bz9fB91[i]G81
-!s100 6ajVFC7I^>3ekmG;iEoEJ0
-R13
+L32 1
+V;FBz<BeN37Ki=U7QU1PeA2
+!s100 ZST<MRQS0@z0lR45iV=<D0
+R15
 32
-R14
+R16
 !i10b 1
-Z23 !s108 1762977771.000000
-Z24 !s90 -work|work|Waveform.vwf.vht|
-Z25 !s107 Waveform.vwf.vht|
-!i113 1
-R18
-R19
+R17
+Z25 !s90 -work|work|Waveform5.vwf.vht|
+Z26 !s107 Waveform5.vwf.vht|
+!i113 0
+R20
+R21
 Aiarith_arch
-R8
-R9
-DEx4 work 18 iarith_vhd_vec_tst 0 22 49;`nf_b9bz9fB91[i]G81
-l50
-L33
-V_6BTf=k8FSPoGZEoUL6=72
-!s100 8L?a9]LL`SjEC[A@l6BJ]3
-R13
+R10
+R11
+DEx4 work 18 iarith_vhd_vec_tst 0 22 ;FBz<BeN37Ki=U7QU1PeA2
+!i122 63
+l65
+L34 96
+VWBWdBE?`IR`cmQS3D`RY40
+!s100 z=<dJ6B]ABbP0?i0GU7f03
+R15
 32
-R14
+R16
 !i10b 1
-R23
-R24
+R17
 R25
-!i113 1
-R18
-R19
+R26
+!i113 0
+R20
+R21

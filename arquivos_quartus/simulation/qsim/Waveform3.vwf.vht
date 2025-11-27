@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "11/25/2025 11:09:33"
+-- Generated on "11/26/2025 10:54:24"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          IARITH
 -- 
@@ -34,10 +34,21 @@ END IARITH_vhd_vec_tst;
 ARCHITECTURE IARITH_arch OF IARITH_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL ADDRESS : STD_LOGIC_VECTOR(10 DOWNTO 0);
+SIGNAL aux_1_CLK : STD_LOGIC;
 SIGNAL CLOCK_50 : STD_LOGIC;
-SIGNAL DATA_IN : STD_LOGIC_VECTOR(31 DOWNTO 0);
-SIGNAL DATA_OUT : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL debug_dado_in : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL debug_dado_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL debug_EndMEM : STD_LOGIC_VECTOR(5 DOWNTO 0);
+SIGNAL debug_habilita : STD_LOGIC;
+SIGNAL debug_inA : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL debug_inB : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL debug_OPCODE : STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL debug_RA : STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL debug_RB : STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL debug_RD : STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL debug_re : STD_LOGIC;
+SIGNAL debug_saidaULA : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL debug_we : STD_LOGIC;
 SIGNAL HEX0 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL HEX1 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL HEX2 : STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -48,10 +59,21 @@ SIGNAL KEY : STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL LEDR : STD_LOGIC_VECTOR(9 DOWNTO 0);
 COMPONENT IARITH
 	PORT (
-	ADDRESS : BUFFER STD_LOGIC_VECTOR(10 DOWNTO 0);
+	aux_1_CLK : IN STD_LOGIC;
 	CLOCK_50 : IN STD_LOGIC;
-	DATA_IN : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
-	DATA_OUT : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	debug_dado_in : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	debug_dado_out : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	debug_EndMEM : BUFFER STD_LOGIC_VECTOR(5 DOWNTO 0);
+	debug_habilita : BUFFER STD_LOGIC;
+	debug_inA : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	debug_inB : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	debug_OPCODE : BUFFER STD_LOGIC_VECTOR(3 DOWNTO 0);
+	debug_RA : BUFFER STD_LOGIC_VECTOR(2 DOWNTO 0);
+	debug_RB : BUFFER STD_LOGIC_VECTOR(2 DOWNTO 0);
+	debug_RD : BUFFER STD_LOGIC_VECTOR(2 DOWNTO 0);
+	debug_re : BUFFER STD_LOGIC;
+	debug_saidaULA : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	debug_we : BUFFER STD_LOGIC;
 	HEX0 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
 	HEX1 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
 	HEX2 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -66,10 +88,21 @@ BEGIN
 	i1 : IARITH
 	PORT MAP (
 -- list connections between master ports and signals
-	ADDRESS => ADDRESS,
+	aux_1_CLK => aux_1_CLK,
 	CLOCK_50 => CLOCK_50,
-	DATA_IN => DATA_IN,
-	DATA_OUT => DATA_OUT,
+	debug_dado_in => debug_dado_in,
+	debug_dado_out => debug_dado_out,
+	debug_EndMEM => debug_EndMEM,
+	debug_habilita => debug_habilita,
+	debug_inA => debug_inA,
+	debug_inB => debug_inB,
+	debug_OPCODE => debug_OPCODE,
+	debug_RA => debug_RA,
+	debug_RB => debug_RB,
+	debug_RD => debug_RD,
+	debug_re => debug_re,
+	debug_saidaULA => debug_saidaULA,
+	debug_we => debug_we,
 	HEX0 => HEX0,
 	HEX1 => HEX1,
 	HEX2 => HEX2,
@@ -79,6 +112,22 @@ BEGIN
 	KEY => KEY,
 	LEDR => LEDR
 	);
+
+-- aux_1_CLK
+t_prcs_aux_1_CLK: PROCESS
+BEGIN
+	aux_1_CLK <= '1';
+	WAIT FOR 10000 ps;
+	FOR i IN 1 TO 49
+	LOOP
+		aux_1_CLK <= '0';
+		WAIT FOR 10000 ps;
+		aux_1_CLK <= '1';
+		WAIT FOR 10000 ps;
+	END LOOP;
+	aux_1_CLK <= '0';
+WAIT;
+END PROCESS t_prcs_aux_1_CLK;
 
 -- CLOCK_50
 t_prcs_CLOCK_50: PROCESS

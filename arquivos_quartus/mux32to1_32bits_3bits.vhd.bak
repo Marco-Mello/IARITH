@@ -1,0 +1,83 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity mux32to1_32bits_3bits is
+    generic (
+        LARGURA_DADOS : natural := 32
+    );
+    port (
+        seletor   : in  std_logic_vector(4 downto 0);
+        entrada0  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada1  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada2  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada3  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada4  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada5  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada6  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada7  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada8  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada9  : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada10 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada11 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada12 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada13 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada14 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada15 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada16 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada17 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada18 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada19 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada20 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada21 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada22 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada23 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada24 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada25 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada26 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada27 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada28 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada29 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada30 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        entrada31 : in  std_logic_vector(LARGURA_DADOS-1 downto 0);
+        saida     : out std_logic_vector(LARGURA_DADOS-1 downto 0)
+    );
+end entity;
+
+architecture concorrente of mux32to1_32bits_3bits is
+begin
+
+    saida <= entrada0  when seletor = "00000" else
+             entrada1  when seletor = "00001" else
+             entrada2  when seletor = "00010" else
+             entrada3  when seletor = "00011" else
+             entrada4  when seletor = "00100" else
+             entrada5  when seletor = "00101" else
+             entrada6  when seletor = "00110" else
+             entrada7  when seletor = "00111" else
+             entrada8  when seletor = "01000" else
+             entrada9  when seletor = "01001" else
+             entrada10 when seletor = "01010" else
+             entrada11 when seletor = "01011" else
+             entrada12 when seletor = "01100" else
+             entrada13 when seletor = "01101" else
+             entrada14 when seletor = "01110" else
+             entrada15 when seletor = "01111" else
+             entrada16 when seletor = "10000" else
+             entrada17 when seletor = "10001" else
+             entrada18 when seletor = "10010" else
+             entrada19 when seletor = "10011" else
+             entrada20 when seletor = "10100" else
+             entrada21 when seletor = "10101" else
+             entrada22 when seletor = "10110" else
+             entrada23 when seletor = "10111" else
+             entrada24 when seletor = "11000" else
+             entrada25 when seletor = "11001" else
+             entrada26 when seletor = "11010" else
+             entrada27 when seletor = "11011" else
+             entrada28 when seletor = "11100" else
+             entrada29 when seletor = "11101" else
+             entrada30 when seletor = "11110" else
+             entrada31 when seletor = "11111" else
+             (others => '0');  -- Valor padrão
+
+end architecture;

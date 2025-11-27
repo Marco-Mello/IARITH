@@ -1,13 +1,13 @@
 /*<simulation_settings>
-<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off IARITH -c IARITH --vector_source="/home/marcuxo/Desktop/IARITH/arquivos_quartus/Waveform1.vwf" --testbench_file="/home/marcuxo/Desktop/IARITH/arquivos_quartus/simulation/qsim/Waveform1.vwf.vht"</ftestbench_cmd>
-<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off IARITH -c IARITH --vector_source="/home/marcuxo/Desktop/IARITH/arquivos_quartus/Waveform1.vwf" --testbench_file="/home/marcuxo/Desktop/IARITH/arquivos_quartus/simulation/qsim/Waveform1.vwf.vht"</ttestbench_cmd>
-<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="/home/marcuxo/Desktop/IARITH/arquivos_quartus/simulation/qsim/" IARITH -c IARITH</fnetlist_cmd>
-<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="/home/marcuxo/Desktop/IARITH/arquivos_quartus/simulation/qsim/" IARITH -c IARITH</tnetlist_cmd>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off IARITH -c IARITH --vector_source="/home/marcuxo/IARITH_25/Waveform1.vwf" --testbench_file="/home/marcuxo/IARITH_25/simulation/qsim/Waveform1.vwf.vht"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off IARITH -c IARITH --vector_source="/home/marcuxo/IARITH_25/Waveform1.vwf" --testbench_file="/home/marcuxo/IARITH_25/simulation/qsim/Waveform1.vwf.vht"</ttestbench_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="/home/marcuxo/IARITH_25/simulation/qsim/" IARITH -c IARITH</fnetlist_cmd>
+<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="/home/marcuxo/IARITH_25/simulation/qsim/" IARITH -c IARITH</tnetlist_cmd>
 <modelsim_script>onerror {exit -code 1}
 vlib work
 vcom -work work IARITH.vho
 vcom -work work Waveform1.vwf.vht
-vsim -novopt -c -t 1ps -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.IARITH_vhd_vec_tst
+vsim -voptargs=+acc -c -t 1ps -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.IARITH_vhd_vec_tst
 vcd file -direction IARITH.msim.vcd
 vcd add -internal IARITH_vhd_vec_tst/*
 vcd add -internal IARITH_vhd_vec_tst/i1/*
@@ -20,6 +20,7 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -38,6 +39,7 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
 </modelsim_script_timing>
 <hdl_lang>vhdl</hdl_lang>
 </simulation_settings>*/

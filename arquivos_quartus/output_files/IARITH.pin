@@ -79,17 +79,17 @@ GND                          : A1        :        :                   :         
 MSEL2                        : A2        :        :                   :         : 9A        :                
 VCCBAT                       : A3        : power  :                   : 1.2V    :           :                
 nCONFIG                      : A4        :        :                   :         : 9A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : A5        :        :                   :         : 8A        :                
+debug_dadoEscritaD[31]       : A5        : output : 2.5 V             :         : 8A        : N              
 VCCIO8A                      : A6        : power  :                   : 2.5V    : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : A7        :        :                   :         : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : A8        :        :                   :         : 8A        :                
-DATA_OUT[12]                 : A9        : output : 2.5 V             :         : 8A        : N              
-DATA_OUT[15]                 : A10       : output : 2.5 V             :         : 8A        : N              
+debug_dadoEscritaD[27]       : A7        : output : 2.5 V             :         : 8A        : N              
+debug_saidaULA[27]           : A8        : output : 2.5 V             :         : 8A        : N              
+debug_inA[29]                : A9        : output : 2.5 V             :         : 8A        : N              
+debug_saidaULA[5]            : A10       : output : 2.5 V             :         : 8A        : N              
 GND                          : A11       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : A12       :        :                   :         : 7A        :                
+debug_saidaULA[28]           : A12       : output : 2.5 V             :         : 7A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : A13       :        :                   :         : 7A        :                
-ADDRESS[2]                   : A14       : output : 2.5 V             :         : 7A        : N              
-DATA_IN[11]                  : A15       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : A14       :        :                   :         : 7A        :                
+debug_dadoEscritaD[26]       : A15       : output : 2.5 V             :         : 7A        : N              
 VCCIO7A                      : A16       : power  :                   : 2.5V    : 7A        :                
 NC                           : A17       :        :                   :         :           :                
 NC                           : A18       :        :                   :         :           :                
@@ -103,15 +103,15 @@ GND                          : AA3       : gnd    :                   :         
 GND                          : AA4       : gnd    :                   :         :           :                
 AS_DATA2, DATA2              : AA5       :        :                   :         : 3A        :                
 GND                          : AA6       : gnd    :                   :         :           :                
-DATA_IN[9]                   : AA7       : output : 2.5 V             :         : 3B        : N              
-DATA_OUT[26]                 : AA8       : output : 2.5 V             :         : 3B        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AA9       :        :                   :         : 3B        :                
+debug_inB[27]                : AA7       : output : 2.5 V             :         : 3B        : N              
+debug_RA[0]                  : AA8       : output : 2.5 V             :         : 3B        : N              
+debug_inA[30]                : AA9       : output : 2.5 V             :         : 3B        : N              
 HEX2[2]                      : AA10      : output : 2.5 V             :         : 3B        : Y              
 GND                          : AA11      : gnd    :                   :         :           :                
-DATA_OUT[6]                  : AA12      : output : 2.5 V             :         : 3B        : N              
-ADDRESS[1]                   : AA13      : output : 2.5 V             :         : 4A        : N              
-DATA_IN[16]                  : AA14      : output : 2.5 V             :         : 4A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AA15      :        :                   :         : 4A        :                
+debug_inA[4]                 : AA12      : output : 2.5 V             :         : 3B        : N              
+debug_inB[13]                : AA13      : output : 2.5 V             :         : 4A        : N              
+debug_inB[28]                : AA14      : output : 2.5 V             :         : 4A        : N              
+debug_inA[25]                : AA15      : output : 2.5 V             :         : 4A        : N              
 VCCIO4A                      : AA16      : power  :                   : 2.5V    : 4A        :                
 HEX1[5]                      : AA17      : output : 2.5 V             :         : 4A        : Y              
 HEX1[3]                      : AA18      : output : 2.5 V             :         : 4A        : Y              
@@ -123,17 +123,17 @@ GND                          : AB1       : gnd    :                   :         
 GND                          : AB2       : gnd    :                   :         :           :                
 AS_DATA1, DATA1              : AB3       :        :                   :         : 3A        :                
 AS_DATA0, ASDO, DATA0        : AB4       :        :                   :         : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB5       :        :                   :         : 3B        :                
-DATA_OUT[19]                 : AB6       : output : 2.5 V             :         : 3B        : N              
-DATA_IN[6]                   : AB7       : output : 2.5 V             :         : 3B        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB8       :        :                   :         : 3B        :                
+debug_inA[1]                 : AB5       : output : 2.5 V             :         : 3B        : N              
+debug_RD[1]                  : AB6       : output : 2.5 V             :         : 3B        : N              
+debug_inA[17]                : AB7       : output : 2.5 V             :         : 3B        : N              
+debug_RB[0]                  : AB8       : output : 2.5 V             :         : 3B        : N              
 GND                          : AB9       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB10      :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB11      :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB12      :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB13      :        :                   :         : 4A        :                
+debug_inA[24]                : AB10      : output : 2.5 V             :         : 3B        : N              
+debug_inB[24]                : AB11      : output : 2.5 V             :         : 3B        : N              
+debug_inB[29]                : AB12      : output : 2.5 V             :         : 4A        : N              
+debug_RA[2]                  : AB13      : output : 2.5 V             :         : 4A        : N              
 GND                          : AB14      : gnd    :                   :         :           :                
-DATA_IN[31]                  : AB15      : output : 2.5 V             :         : 4A        : N              
+debug_inB[31]                : AB15      : output : 2.5 V             :         : 4A        : N              
 VREFB4AN0                    : AB16      : power  :                   :         : 4A        :                
 HEX2[1]                      : AB17      : output : 2.5 V             :         : 4A        : Y              
 HEX1[4]                      : AB18      : output : 2.5 V             :         : 4A        : Y              
@@ -145,18 +145,18 @@ GND                          : B1        : gnd    :                   :         
 GND                          : B2        : gnd    :                   :         :           :                
 DNU                          : B3        :        :                   :         :           :                
 DNU                          : B4        :        :                   :         :           :                
-DATA_OUT[27]                 : B5        : output : 2.5 V             :         : 8A        : N              
+debug_saidaULA[31]           : B5        : output : 2.5 V             :         : 8A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : B6        :        :                   :         : 8A        :                
-DATA_OUT[9]                  : B7        : output : 2.5 V             :         : 8A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : B7        :        :                   :         : 8A        :                
 VREFB8AN0                    : B8        : power  :                   :         : 8A        :                
 GND                          : B9        : gnd    :                   :         :           :                
-DATA_OUT[20]                 : B10       : output : 2.5 V             :         : 8A        : N              
-DATA_OUT[4]                  : B11       : output : 2.5 V             :         : 7A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : B12       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : B13       :        :                   :         : 7A        :                
+debug_dadoEscritaD[5]        : B10       : output : 2.5 V             :         : 8A        : N              
+debug_inB[0]                 : B11       : output : 2.5 V             :         : 7A        : N              
+debug_inB[8]                 : B12       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[8]        : B13       : output : 2.5 V             :         : 7A        : N              
 GND                          : B14       : gnd    :                   :         :           :                
-DATA_OUT[17]                 : B15       : output : 2.5 V             :         : 7A        : N              
-DATA_IN[4]                   : B16       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[29]           : B15       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : B16       :        :                   :         : 7A        :                
 NC                           : B17       :        :                   :         :           :                
 NC                           : B18       :        :                   :         :           :                
 VCCIO7A                      : B19       : power  :                   : 2.5V    : 7A        :                
@@ -168,17 +168,17 @@ HEX5[5]                      : C2        : output : 2.5 V             :         
 GND                          : C3        : gnd    :                   :         :           :                
 GND                          : C4        : gnd    :                   :         :           :                
 GND                          : C5        :        :                   :         : 9A        :                
-DATA_OUT[11]                 : C6        : output : 2.5 V             :         : 8A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : C6        :        :                   :         : 8A        :                
 VCCIO8A                      : C7        : power  :                   : 2.5V    : 8A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C8        :        :                   :         : 8A        :                
-DATA_IN[13]                  : C9        : output : 2.5 V             :         : 8A        : N              
+debug_dadoEscritaD[17]       : C9        : output : 2.5 V             :         : 8A        : N              
 VCCPD7A8A                    : C10       : power  :                   : 2.5V    : 7A, 8A    :                
-ADDRESS[7]                   : C11       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[22]           : C11       : output : 2.5 V             :         : 7A        : N              
 VCCIO7A                      : C12       : power  :                   : 2.5V    : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : C13       :        :                   :         : 7A        :                
+debug_saidaULA[19]           : C13       : output : 2.5 V             :         : 7A        : N              
 VREFB7AN0                    : C14       : power  :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : C15       :        :                   :         : 7A        :                
-DATA_IN[21]                  : C16       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[30]           : C15       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[7]        : C16       : output : 2.5 V             :         : 7A        : N              
 GND                          : C17       : gnd    :                   :         :           :                
 NC                           : C18       :        :                   :         :           :                
 NC                           : C19       :        :                   :         :           :                
@@ -187,42 +187,42 @@ NC                           : C21       :        :                   :         
 VCCIO7A                      : C22       : power  :                   : 2.5V    : 7A        :                
 GND                          : D1        : gnd    :                   :         :           :                
 GND                          : D2        : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : D3        :        :                   :         : 2A        :                
+debug_dadoEscritaD[24]       : D3        : output : 2.5 V             :         : 2A        : N              
 VCCIO2A                      : D4        : power  :                   : 2.5V    : 2A        :                
 GND                          : D5        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D6        :        :                   :         : 8A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D7        :        :                   :         : 8A        :                
 VCCPD7A8A                    : D8        : power  :                   : 2.5V    : 7A, 8A    :                
-DATA_OUT[21]                 : D9        : output : 2.5 V             :         : 8A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : D9        :        :                   :         : 8A        :                
 GND                          : D10       : gnd    :                   :         :           :                
 VCC_AUX                      : D11       : power  :                   : 2.5V    :           :                
-DATA_IN[28]                  : D12       : output : 2.5 V             :         : 7A        : N              
-DATA_IN[24]                  : D13       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[18]           : D12       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[12]       : D13       : output : 2.5 V             :         : 7A        : N              
 VCCPD7A8A                    : D14       : power  :                   : 2.5V    : 7A, 8A    :                
 VCCIO7A                      : D15       : power  :                   : 2.5V    : 7A        :                
 VCCPD7A8A                    : D16       : power  :                   : 2.5V    : 7A, 8A    :                
-DATA_IN[7]                   : D17       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[25]           : D17       : output : 2.5 V             :         : 7A        : N              
 VCC_AUX                      : D18       : power  :                   : 2.5V    :           :                
 NC                           : D19       :        :                   :         :           :                
 GND                          : D20       : gnd    :                   :         :           :                
 NC                           : D21       :        :                   :         :           :                
 NC                           : D22       :        :                   :         :           :                
 VCCPD1A2A                    : E1        : power  :                   : 2.5V    : 1A, 2A    :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : E2        :        :                   :         : 2A        :                
+debug_inB[4]                 : E2        : output : 2.5 V             :         : 2A        : N              
 GND                          : E3        : gnd    :                   :         :           :                
 GND                          : E4        : gnd    :                   :         :           :                
 MSEL3                        : E5        :        :                   :         : 9A        :                
 VCC_AUX                      : E6        : power  :                   : 2.5V    :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : E7        :        :                   :         : 8A        :                
 VCCIO8A                      : E8        : power  :                   : 2.5V    : 8A        :                
-DATA_IN[17]                  : E9        : output : 2.5 V             :         : 8A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : E10       :        :                   :         : 8A        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : E9        :        :                   :         : 8A        :                
+debug_inB[22]                : E10       : output : 2.5 V             :         : 8A        : N              
 VCCPD7A8A                    : E11       : power  :                   : 2.5V    : 7A, 8A    :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : E12       :        :                   :         : 7A        :                
+debug_dadoEscritaD[18]       : E12       : output : 2.5 V             :         : 7A        : N              
 GND                          : E13       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : E14       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : E15       :        :                   :         : 7A        :                
-ADDRESS[6]                   : E16       : output : 2.5 V             :         : 7A        : N              
+debug_inB[5]                 : E14       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[14]       : E15       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[8]            : E16       : output : 2.5 V             :         : 7A        : N              
 DNU                          : E17       :        :                   :         :           :                
 VCCIO7A                      : E18       : power  :                   : 2.5V    : 7A        :                
 NC                           : E19       :        :                   :         :           :                
@@ -235,15 +235,15 @@ MSEL4                        : F3        :        :                   :         
 VCCA_FPLL                    : F4        : power  :                   : 2.5V    :           :                
 GND                          : F5        : gnd    :                   :         :           :                
 GND                          : F6        : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : F7        :        :                   :         : 8A        :                
+debug_saidaULA[6]            : F7        : output : 2.5 V             :         : 8A        : N              
 VCCPGM                       : F8        : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
-ADDRESS[10]                  : F9        : output : 2.5 V             :         : 8A        : N              
-DATA_IN[2]                   : F10       : output : 2.5 V             :         : 8A        : N              
+debug_inA[9]                 : F9        : output : 2.5 V             :         : 8A        : N              
+debug_dadoEscritaD[6]        : F10       : output : 2.5 V             :         : 8A        : N              
 VCCIO7A                      : F11       : power  :                   : 2.5V    : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : F12       :        :                   :         : 7A        :                
-DATA_OUT[31]                 : F13       : output : 2.5 V             :         : 7A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : F14       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : F15       :        :                   :         : 7A        :                
+debug_saidaULA[12]           : F13       : output : 2.5 V             :         : 7A        : N              
+debug_inA[11]                : F14       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[7]            : F15       : output : 2.5 V             :         : 7A        : N              
 GND                          : F16       : gnd    :                   :         :           :                
 GND                          : F17       :        :                   :         : 7A        :                
 NC                           : F18       :        :                   :         :           :                
@@ -252,23 +252,23 @@ NC                           : F20       :        :                   :         
 VCCIO7A                      : F21       : power  :                   : 2.5V    : 7A        :                
 NC                           : F22       :        :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G1        :        :                   :         : 2A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : G2        :        :                   :         : 2A        :                
+debug_saidaULA[24]           : G2        : output : 2.5 V             :         : 2A        : N              
 GND                          : G3        : gnd    :                   :         :           :                
 GND                          : G4        : gnd    :                   :         :           :                
 nCE                          : G5        :        :                   :         : 9A        :                
-DATA_IN[1]                   : G6        : output : 2.5 V             :         : 8A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : G6        :        :                   :         : 8A        :                
 VCCIO8A                      : G7        : power  :                   : 2.5V    : 8A        :                
-DATA_OUT[2]                  : G8        : output : 2.5 V             :         : 8A        : N              
+debug_inB[2]                 : G8        : output : 2.5 V             :         : 8A        : N              
 GND                          : G9        : gnd    :                   :         :           :                
-DATA_OUT[23]                 : G10       : output : 2.5 V             :         : 8A        : N              
-DATA_OUT[3]                  : G11       : output : 2.5 V             :         : 7A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : G12       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : G13       :        :                   :         : 7A        :                
+debug_inB[7]                 : G10       : output : 2.5 V             :         : 8A        : N              
+debug_dadoEscritaD[29]       : G11       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[28]       : G12       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[0]        : G13       : output : 2.5 V             :         : 7A        : N              
 VCCIO7A                      : G14       : power  :                   : 2.5V    : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G15       :        :                   :         : 7A        :                
-ADDRESS[3]                   : G16       : output : 2.5 V             :         : 7A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : G17       :        :                   :         : 7A        :                
-DATA_IN[23]                  : G18       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : G16       :        :                   :         : 7A        :                
+debug_saidaULA[14]           : G17       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[23]       : G18       : output : 2.5 V             :         : 7A        : N              
 GND                          : G19       : gnd    :                   :         :           :                
 NC                           : G20       :        :                   :         :           :                
 NC                           : G21       :        :                   :         :           :                
@@ -280,15 +280,15 @@ GND                          : H4        : gnd    :                   :         
 nSTATUS                      : H5        :        :                   :         : 9A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : H6        :        :                   :         : 8A        :                
 GND                          : H7        : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H8        :        :                   :         : 8A        :                
-DATA_IN[26]                  : H9        : output : 2.5 V             :         : 8A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : H10       :        :                   :         : 7A        :                
-DATA_IN[19]                  : H11       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[20]           : H8        : output : 2.5 V             :         : 8A        : N              
+aux_1_CLK                    : H9        : input  : 2.5 V             :         : 8A        : N              
+debug_saidaULA[1]            : H10       : output : 2.5 V             :         : 7A        : N              
+debug_inA[22]                : H11       : output : 2.5 V             :         : 7A        : N              
 GND                          : H12       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H13       :        :                   :         : 7A        :                
-DATA_OUT[0]                  : H14       : output : 2.5 V             :         : 7A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : H15       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H16       :        :                   :         : 7A        :                
+debug_saidaULA[26]           : H13       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : H14       :        :                   :         : 7A        :                
+debug_dadoEscritaD[25]       : H15       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[22]       : H16       : output : 2.5 V             :         : 7A        : N              
 VCCIO7A                      : H17       : power  :                   : 2.5V    : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : H18       :        :                   :         : 7A        :                
 VCCA_FPLL                    : H19       : power  :                   : 2.5V    :           :                
@@ -301,19 +301,19 @@ GND                          : J3        : gnd    :                   :         
 VCC                          : J4        : power  :                   : 1.1V    :           :                
 GND                          : J5        : gnd    :                   :         :           :                
 MSEL1                        : J6        :        :                   :         : 9A        :                
-DATA_OUT[16]                 : J7        : output : 2.5 V             :         : 8A        : N              
-DATA_IN[3]                   : J8        : output : 2.5 V             :         : 8A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : J9        :        :                   :         : 8A        :                
+debug_inA[13]                : J7        : output : 2.5 V             :         : 8A        : N              
+debug_dadoEscritaD[20]       : J8        : output : 2.5 V             :         : 8A        : N              
+debug_inB[10]                : J9        : output : 2.5 V             :         : 8A        : N              
 VCC                          : J10       : power  :                   : 1.1V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : J11       :        :                   :         : 7A        :                
+debug_dadoEscritaD[1]        : J11       : output : 2.5 V             :         : 7A        : N              
 VCC                          : J12       : power  :                   : 1.1V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : J13       :        :                   :         : 7A        :                
+debug_dadoEscritaD[30]       : J13       : output : 2.5 V             :         : 7A        : N              
 VCC                          : J14       : power  :                   : 1.1V    :           :                
 GND                          : J15       : gnd    :                   :         :           :                
 VCC                          : J16       : power  :                   : 1.1V    :           :                
-DATA_IN[18]                  : J17       : output : 2.5 V             :         : 7A        : N              
-DATA_OUT[7]                  : J18       : output : 2.5 V             :         : 7A        : N              
-DATA_IN[8]                   : J19       : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[16]           : J17       : output : 2.5 V             :         : 7A        : N              
+debug_dadoEscritaD[16]       : J18       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : J19       :        :                   :         : 7A        :                
 GND                          : J20       : gnd    :                   :         :           :                
 NC                           : J21       :        :                   :         :           :                
 NC                           : J22       :        :                   :         :           :                
@@ -323,30 +323,30 @@ VCC                          : K3        : power  :                   : 1.1V    
 GND                          : K4        : gnd    :                   :         :           :                
 VCC                          : K5        : power  :                   : 1.1V    :           :                
 CONF_DONE                    : K6        :        :                   :         : 9A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : K7        :        :                   :         : 8A        :                
+debug_inB[1]                 : K7        : output : 2.5 V             :         : 8A        : N              
 GND                          : K8        : gnd    :                   :         :           :                
-DATA_IN[20]                  : K9        : output : 2.5 V             :         : 7A        : N              
+debug_saidaULA[9]            : K9        : output : 2.5 V             :         : 7A        : N              
 GND                          : K10       : gnd    :                   :         :           :                
 VCC                          : K11       : power  :                   : 1.1V    :           :                
 GND                          : K12       : gnd    :                   :         :           :                
 VCC                          : K13       : power  :                   : 1.1V    :           :                
 GND                          : K14       : gnd    :                   :         :           :                
 VCC                          : K15       : power  :                   : 1.1V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : K16       :        :                   :         : 7A        :                
-DATA_IN[22]                  : K17       : output : 2.5 V             :         : 5B        : N              
+debug_saidaULA[0]            : K16       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : K17       :        :                   :         : 5B        :                
 VCCIO5B                      : K18       : power  :                   : 2.5V    : 5B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K19       :        :                   :         : 7A        :                
-DATA_OUT[14]                 : K20       : output : 2.5 V             :         : 7A        : N              
-DATA_OUT[24]                 : K21       : output : 2.5 V             :         : 5B        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : K22       :        :                   :         : 5B        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : K20       :        :                   :         : 7A        :                
+debug_saidaULA[21]           : K21       : output : 2.5 V             :         : 5B        : N              
+debug_saidaULA[3]            : K22       : output : 2.5 V             :         : 5B        : N              
 LEDR[9]                      : L1        : output : 2.5 V             :         : 2A        : Y              
 LEDR[8]                      : L2        : output : 2.5 V             :         : 2A        : Y              
 GND                          : L3        : gnd    :                   :         :           :                
 VCC                          : L4        : power  :                   : 1.1V    :           :                
 GND                          : L5        : gnd    :                   :         :           :                
 MSEL0                        : L6        :        :                   :         : 9A        :                
-ADDRESS[0]                   : L7        : output : 2.5 V             :         : 8A        : N              
-DATA_OUT[5]                  : L8        : output : 2.5 V             :         : 7A        : N              
+debug_inB[30]                : L7        : output : 2.5 V             :         : 8A        : N              
+debug_inB[25]                : L8        : output : 2.5 V             :         : 7A        : N              
 DNU                          : L9        :        :                   :         :           :                
 VCC                          : L10       : power  :                   : 1.1V    :           :                
 GND                          : L11       : gnd    :                   :         :           :                
@@ -355,12 +355,12 @@ GND                          : L13       : gnd    :                   :         
 VCC                          : L14       : power  :                   : 1.1V    :           :                
 GND                          : L15       : gnd    :                   :         :           :                
 VCC                          : L16       : power  :                   : 1.1V    :           :                
-DATA_OUT[8]                  : L17       : output : 2.5 V             :         : 5B        : N              
-DATA_OUT[25]                 : L18       : output : 2.5 V             :         : 5B        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : L19       :        :                   :         : 5B        :                
+debug_dadoEscritaD[3]        : L17       : output : 2.5 V             :         : 5B        : N              
+debug_dadoEscritaD[21]       : L18       : output : 2.5 V             :         : 5B        : N              
+debug_saidaULA[4]            : L19       : output : 2.5 V             :         : 5B        : N              
 VREFB5BN0                    : L20       : power  :                   :         : 5B        :                
 GND                          : L21       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : L22       :        :                   :         : 5B        :                
+debug_saidaULA[13]           : L22       : output : 2.5 V             :         : 5B        : N              
 GND                          : M1        : gnd    :                   :         :           :                
 GND                          : M2        : gnd    :                   :         :           :                
 VCCA_FPLL                    : M3        : power  :                   : 2.5V    :           :                
@@ -376,21 +376,21 @@ GND                          : M12       : gnd    :                   :         
 VCC                          : M13       : power  :                   : 1.1V    :           :                
 GND                          : M14       : gnd    :                   :         :           :                
 VCC                          : M15       : power  :                   : 1.1V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : M16       :        :                   :         : 5B        :                
+debug_RD[2]                  : M16       : output : 2.5 V             :         : 5B        : N              
 VCCPD5B                      : M17       : power  :                   : 2.5V    : 5B        :                
-DATA_IN[5]                   : M18       : output : 2.5 V             :         : 5B        : N              
+debug_inB[16]                : M18       : output : 2.5 V             :         : 5B        : N              
 VCCIO5B                      : M19       : power  :                   : 2.5V    : 5B        :                
-ADDRESS[5]                   : M20       : output : 2.5 V             :         : 5B        : N              
-ADDRESS[9]                   : M21       : output : 2.5 V             :         : 5B        : N              
-DATA_IN[27]                  : M22       : output : 2.5 V             :         : 5B        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : M20       :        :                   :         : 5B        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : M21       :        :                   :         : 5B        :                
+debug_dadoEscritaD[13]       : M22       : output : 2.5 V             :         : 5B        : N              
 LEDR[5]                      : N1        : output : 2.5 V             :         : 2A        : Y              
 LEDR[4]                      : N2        : output : 2.5 V             :         : 2A        : Y              
 GND                          : N3        : gnd    :                   :         :           :                
 VCC                          : N4        : power  :                   : 1.1V    :           :                
 GND                          : N5        : gnd    :                   :         :           :                
-DATA_IN[0]                   : N6        : output : 2.5 V             :         : 3A        : N              
+debug_inB[19]                : N6        : output : 2.5 V             :         : 3A        : N              
 GND                          : N7        : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : N8        :        :                   :         : 3B        :                
+debug_RB[1]                  : N8        : output : 2.5 V             :         : 3B        : N              
 HEX5[0]                      : N9        : output : 2.5 V             :         : 3B        : Y              
 VCC                          : N10       : power  :                   : 1.1V    :           :                
 GND                          : N11       : gnd    :                   :         :           :                
@@ -398,92 +398,92 @@ VCC                          : N12       : power  :                   : 1.1V    
 GND                          : N13       : gnd    :                   :         :           :                
 VCC                          : N14       : power  :                   : 1.1V    :           :                
 GND                          : N15       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : N16       :        :                   :         : 5B        :                
+debug_saidaULA[11]           : N16       : output : 2.5 V             :         : 5B        : N              
 GND                          : N17       : gnd    :                   :         :           :                
 VCCPD5B                      : N18       : power  :                   : 2.5V    : 5B        :                
-DATA_OUT[28]                 : N19       : output : 2.5 V             :         : 5B        : N              
+debug_RD[0]                  : N19       : output : 2.5 V             :         : 5B        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : N20       :        :                   :         : 5B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : N21       :        :                   :         : 5B        :                
+debug_dadoEscritaD[11]       : N21       : output : 2.5 V             :         : 5B        : N              
 GND                          : N22       : gnd    :                   :         :           :                
 GND                          : P1        : gnd    :                   :         :           :                
 GND                          : P2        : gnd    :                   :         :           :                
 VCC                          : P3        : power  :                   : 1.1V    :           :                
 GND                          : P4        : gnd    :                   :         :           :                
 TMS                          : P5        : input  :                   :         : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : P6        :        :                   :         : 3A        :                
-DATA_IN[15]                  : P7        : output : 2.5 V             :         : 3A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : P8        :        :                   :         : 3B        :                
+debug_saidaULA[2]            : P6        : output : 2.5 V             :         : 3A        : N              
+debug_inB[6]                 : P7        : output : 2.5 V             :         : 3A        : N              
+debug_escreveD               : P8        : output : 2.5 V             :         : 3B        : N              
 HEX4[6]                      : P9        : output : 2.5 V             :         : 3B        : Y              
 GND                          : P10       : gnd    :                   :         :           :                
 VCC                          : P11       : power  :                   : 1.1V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : P12       :        :                   :         : 3B        :                
+debug_inA[27]                : P12       : output : 2.5 V             :         : 3B        : N              
 VCC                          : P13       : power  :                   : 1.1V    :           :                
 HEX5[3]                      : P14       : output : 2.5 V             :         : 4A        : Y              
 VCC                          : P15       : power  :                   : 1.1V    :           :                
-DATA_OUT[18]                 : P16       : output : 2.5 V             :         : 5A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : P17       :        :                   :         : 5A        :                
+debug_inB[14]                : P16       : output : 2.5 V             :         : 5A        : N              
+debug_saidaULA[23]           : P17       : output : 2.5 V             :         : 5A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : P18       :        :                   :         : 5A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : P19       :        :                   :         : 5A        :                
+debug_inB[3]                 : P19       : output : 2.5 V             :         : 5A        : N              
 VCCIO5A                      : P20       : power  :                   : 2.5V    : 5A        :                
 VCCPD5A                      : P21       : power  :                   : 2.5V    : 5A        :                
-DATA_OUT[13]                 : P22       : output : 2.5 V             :         : 5A        : N              
+debug_dadoEscritaD[15]       : P22       : output : 2.5 V             :         : 5A        : N              
 VCCIO2A                      : R1        : power  :                   : 2.5V    : 2A        :                
 VCCPD1A2A                    : R2        : power  :                   : 2.5V    : 1A, 2A    :                
 GND                          : R3        : gnd    :                   :         :           :                
 nCSO, DATA4                  : R4        :        :                   :         : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : R5        :        :                   :         : 3A        :                
-DATA_OUT[1]                  : R6        : output : 2.5 V             :         : 3A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : R7        :        :                   :         : 3A        :                
+debug_inA[8]                 : R5        : output : 2.5 V             :         : 3A        : N              
+debug_inA[0]                 : R6        : output : 2.5 V             :         : 3A        : N              
+debug_dadoEscritaD[2]        : R7        : output : 2.5 V             :         : 3A        : N              
 VCCIO3B                      : R8        : power  :                   : 2.5V    : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : R9        :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : R10       :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : R11       :        :                   :         : 3B        :                
-DATA_IN[30]                  : R12       : output : 2.5 V             :         : 3B        : N              
+debug_inB[23]                : R9        : output : 2.5 V             :         : 3B        : N              
+debug_inA[2]                 : R10       : output : 2.5 V             :         : 3B        : N              
+debug_inA[15]                : R11       : output : 2.5 V             :         : 3B        : N              
+debug_inA[28]                : R12       : output : 2.5 V             :         : 3B        : N              
 GND                          : R13       : gnd    :                   :         :           :                
-DATA_IN[10]                  : R14       : output : 2.5 V             :         : 4A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : R15       :        :                   :         : 5A        :                
-ADDRESS[4]                   : R16       : output : 2.5 V             :         : 5A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : R17       :        :                   :         : 5A        :                
+debug_inA[3]                 : R14       : output : 2.5 V             :         : 4A        : N              
+debug_inB[9]                 : R15       : output : 2.5 V             :         : 5A        : N              
+debug_saidaULA[15]           : R16       : output : 2.5 V             :         : 5A        : N              
+debug_dadoEscritaD[4]        : R17       : output : 2.5 V             :         : 5A        : N              
 VCCIO5A                      : R18       : power  :                   : 2.5V    : 5A        :                
 VCCPGM                       : R19       : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
 VREFB5AN0                    : R20       : power  :                   :         : 5A        :                
-DATA_OUT[29]                 : R21       : output : 2.5 V             :         : 5A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : R22       :        :                   :         : 5A        :                
+debug_dadoEscritaD[19]       : R21       : output : 2.5 V             :         : 5A        : N              
+debug_saidaULA[10]           : R22       : output : 2.5 V             :         : 5A        : N              
 GND                          : T1        : gnd    :                   :         :           :                
 GND                          : T2        : gnd    :                   :         :           :                
 VCCA_FPLL                    : T3        : power  :                   : 2.5V    :           :                
 AS_DATA3, DATA3              : T4        :        :                   :         : 3A        :                
 VCCA_FPLL                    : T5        : power  :                   : 2.5V    :           :                
 VCCIO3A                      : T6        : power  :                   : 2.5V    : 3A        :                
-ADDRESS[8]                   : T7        : output : 2.5 V             :         : 3A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : T8        :        :                   :         : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : T9        :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : T10       :        :                   :         : 3B        :                
+debug_inA[12]                : T7        : output : 2.5 V             :         : 3A        : N              
+debug_inA[19]                : T8        : output : 2.5 V             :         : 3A        : N              
+debug_inA[26]                : T9        : output : 2.5 V             :         : 3B        : N              
+debug_inA[23]                : T10       : output : 2.5 V             :         : 3B        : N              
 VCCIO3B                      : T11       : power  :                   : 2.5V    : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : T12       :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : T13       :        :                   :         : 4A        :                
+debug_inB[21]                : T12       : output : 2.5 V             :         : 4A        : N              
+debug_inB[15]                : T13       : output : 2.5 V             :         : 4A        : N              
 HEX5[2]                      : T14       : output : 2.5 V             :         : 4A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : T15       :        :                   :         : 5A        :                
+debug_inB[26]                : T15       : output : 2.5 V             :         : 5A        : N              
 GND                          : T16       : gnd    :                   :         :           :                
-DATA_OUT[30]                 : T17       : output : 2.5 V             :         : 5A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : T18       :        :                   :         : 5A        :                
-DATA_OUT[22]                 : T19       : output : 2.5 V             :         : 5A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : T20       :        :                   :         : 5A        :                
+debug_inA[10]                : T17       : output : 2.5 V             :         : 5A        : N              
+debug_inB[17]                : T18       : output : 2.5 V             :         : 5A        : N              
+debug_inB[20]                : T19       : output : 2.5 V             :         : 5A        : N              
+debug_inA[5]                 : T20       : output : 2.5 V             :         : 5A        : N              
 GND                          : T21       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : T22       :        :                   :         : 5A        :                
+debug_dadoEscritaD[10]       : T22       : output : 2.5 V             :         : 5A        : N              
 LEDR[7]                      : U1        : output : 2.5 V             :         : 2A        : Y              
 LEDR[6]                      : U2        : output : 2.5 V             :         : 2A        : Y              
 GND                          : U3        : gnd    :                   :         :           :                
 GND                          : U4        : gnd    :                   :         :           :                
 GND                          : U5        : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : U6        :        :                   :         : 3A        :                
+debug_saidaULA[17]           : U6        : output : 2.5 V             :         : 3A        : N              
 KEY[0]                       : U7        : input  : 2.5 V             :         : 3A        : Y              
-DATA_IN[12]                  : U8        : output : 2.5 V             :         : 3A        : N              
+debug_inA[7]                 : U8        : output : 2.5 V             :         : 3A        : N              
 GND                          : U9        : gnd    :                   :         :           :                
-DATA_IN[25]                  : U10       : output : 2.5 V             :         : 3B        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : U11       :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : U12       :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : U13       :        :                   :         : 4A        :                
+debug_inA[18]                : U10       : output : 2.5 V             :         : 3B        : N              
+debug_inB[11]                : U11       : output : 2.5 V             :         : 3B        : N              
+debug_inA[6]                 : U12       : output : 2.5 V             :         : 3B        : N              
+debug_inB[18]                : U13       : output : 2.5 V             :         : 4A        : N              
 VCCIO4A                      : U14       : power  :                   : 2.5V    : 4A        :                
 HEX4[4]                      : U15       : output : 2.5 V             :         : 4A        : Y              
 HEX4[3]                      : U16       : output : 2.5 V             :         : 4A        : Y              
@@ -498,16 +498,16 @@ GND                          : V2        : gnd    :                   :         
 DCLK                         : V3        :        :                   :         : 3A        :                
 GND                          : V4        : gnd    :                   :         :           :                
 TCK                          : V5        : input  :                   :         : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : V6        :        :                   :         : 3A        :                
+debug_inB[12]                : V6        : output : 2.5 V             :         : 3A        : N              
 GND                          : V7        : gnd    :                   :         :           :                
 VCCPGM                       : V8        : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
-DATA_OUT[10]                 : V9        : output : 2.5 V             :         : 3B        : N              
-DATA_IN[29]                  : V10       : output : 2.5 V             :         : 3B        : N              
+debug_inA[21]                : V9        : output : 2.5 V             :         : 3B        : N              
+debug_inA[14]                : V10       : output : 2.5 V             :         : 3B        : N              
 NC                           : V11       :        :                   :         :           :                
 GND                          : V12       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : V13       :        :                   :         : 4A        :                
+debug_RA[1]                  : V13       : output : 2.5 V             :         : 4A        : N              
 HEX2[4]                      : V14       : output : 2.5 V             :         : 4A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : V15       :        :                   :         : 4A        :                
+debug_inA[20]                : V15       : output : 2.5 V             :         : 4A        : N              
 HEX3[3]                      : V16       : output : 2.5 V             :         : 4A        : Y              
 GND                          : V17       : gnd    :                   :         :           :                
 HEX3[5]                      : V18       : output : 2.5 V             :         : 4A        : Y              
@@ -522,7 +522,7 @@ GND                          : W4        : gnd    :                   :         
 TDI                          : W5        : input  :                   :         : 3A        :                
 VCCPD3A                      : W6        : power  :                   : 2.5V    : 3A        :                
 VCC_AUX                      : W7        : power  :                   : 2.5V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : W8        :        :                   :         : 3A        :                
+debug_dadoEscritaD[9]        : W8        : output : 2.5 V             :         : 3A        : N              
 KEY[1]                       : W9        : input  : 2.5 V             :         : 3A        : Y              
 VCCIO3B                      : W10       : power  :                   : 2.5V    : 3B        :                
 VCCPD3B4A                    : W11       : power  :                   : 2.5V    : 3B, 4A    :                
@@ -545,9 +545,9 @@ GND                          : Y5        : gnd    :                   :         
 NC                           : Y6        :        :                   :         :           :                
 VREFB3AN0                    : Y7        : power  :                   :         : 3A        :                
 VCCIO3A                      : Y8        : power  :                   : 2.5V    : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y9        :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y10       :        :                   :         : 3B        :                
-DATA_IN[14]                  : Y11       : output : 2.5 V             :         : 3B        : N              
+debug_inA[16]                : Y9        : output : 2.5 V             :         : 3B        : N              
+debug_RB[2]                  : Y10       : output : 2.5 V             :         : 3B        : N              
+debug_inA[31]                : Y11       : output : 2.5 V             :         : 3B        : N              
 VREFB3BN0                    : Y12       : power  :                   :         : 3B        :                
 VCCIO3B                      : Y13       : power  :                   : 2.5V    : 3B        :                
 HEX2[3]                      : Y14       : output : 2.5 V             :         : 4A        : Y              
