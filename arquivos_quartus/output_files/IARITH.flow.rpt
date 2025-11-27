@@ -1,6 +1,6 @@
 Flow report for IARITH
-Tue Nov 25 09:59:29 2025
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Tue Nov 25 11:20:35 2025
+Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
 ---------------------
@@ -21,45 +21,46 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2018  Intel Corporation. All rights reserved.
-Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic 
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Intel Program License 
-Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details.
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
 
 
 
-+-------------------------------------------------------------------------------+
-; Flow Summary                                                                  ;
-+---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Tue Nov 25 09:59:29 2025       ;
-; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name                   ; IARITH                                      ;
-; Top-level Entity Name           ; IARITH                                      ;
-; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CEBA4F23C7                                 ;
-; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1077                                        ;
-; Total pins                      ; 132                                         ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 0                                           ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
-; Total DLLs                      ; 0                                           ;
-+---------------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------------+
+; Flow Summary                                                                      ;
++---------------------------------+-------------------------------------------------+
+; Flow Status                     ; Successful - Tue Nov 25 11:20:35 2025           ;
+; Quartus Prime Version           ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
+; Revision Name                   ; IARITH                                          ;
+; Top-level Entity Name           ; IARITH                                          ;
+; Family                          ; Cyclone V                                       ;
+; Device                          ; 5CEBA4F23C7                                     ;
+; Timing Models                   ; Final                                           ;
+; Logic utilization (in ALMs)     ; N/A                                             ;
+; Total registers                 ; 1077                                            ;
+; Total pins                      ; 132                                             ;
+; Total virtual pins              ; 0                                               ;
+; Total block memory bits         ; 0                                               ;
+; Total DSP Blocks                ; 0                                               ;
+; Total HSSI RX PCSs              ; 0                                               ;
+; Total HSSI PMA RX Deserializers ; 0                                               ;
+; Total HSSI TX PCSs              ; 0                                               ;
+; Total HSSI PMA TX Serializers   ; 0                                               ;
+; Total PLLs                      ; 0                                               ;
+; Total DLLs                      ; 0                                               ;
++---------------------------------+-------------------------------------------------+
 
 
 +-----------------------------------------+
@@ -67,7 +68,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/25/2025 09:59:02 ;
+; Start date & time ; 11/25/2025 11:19:56 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; IARITH              ;
 +-------------------+---------------------+
@@ -78,11 +79,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+----------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name    ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+----------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 80202069419996.176407554126708         ; --            ; --             ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 137098623015374.176408039615780        ; --            ; --             ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --             ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --             ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --             ; eda_board_design_signal_integrity ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --             ; eda_board_design_symbol           ;
+; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                   ; --            ; --             ; eda_simulation                    ;
+; EDA_SIMULATION_TOOL                 ; Questa Altera FPGA (VHDL)              ; <None>        ; --             ; --                                ;
+; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --             ; eda_simulation                    ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --             ; --                                ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --             ; --                                ;
 ; NUM_PARALLEL_PROCESSORS             ; All                                    ; --            ; --             ; --                                ;
@@ -105,24 +109,30 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:29     ; 1.0                     ; 4937 MB             ; 00:00:29                           ;
-; Total                ; 00:00:29     ; --                      ; --                  ; 00:00:29                           ;
+; Analysis & Synthesis ; 00:00:24     ; 1.0                     ; 514 MB              ; 00:00:39                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 656 MB              ; 00:00:01                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 671 MB              ; 00:00:01                           ;
+; Total                ; 00:00:26     ; --                      ; --                  ; 00:00:41                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                    ;
-+----------------------+------------------+------------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; DESKTOP-CLQE2E9  ; Windows 10 ; 10.0       ; x86_64         ;
-+----------------------+------------------+------------+------------+----------------+
++-----------------------------------------------------------------------------------+
+; Flow OS Summary                                                                   ;
++----------------------+--------------------+---------+------------+----------------+
+; Module Name          ; Machine Hostname   ; OS Name ; OS Version ; Processor type ;
++----------------------+--------------------+---------+------------+----------------+
+; Analysis & Synthesis ; marcuxo-HP-Spectre ; Ubuntu  ; 24         ; x86_64         ;
+; EDA Netlist Writer   ; marcuxo-HP-Spectre ; Ubuntu  ; 24         ; x86_64         ;
+; EDA Netlist Writer   ; marcuxo-HP-Spectre ; Ubuntu  ; 24         ; x86_64         ;
++----------------------+--------------------+---------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off IARITH -c IARITH
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off IARITH -c IARITH --vector_source=/home/marcuxo/Desktop/IARITH/arquivos_quartus/Waveform1.vwf --testbench_file=/home/marcuxo/Desktop/IARITH/arquivos_quartus/simulation/qsim/Waveform1.vwf.vht
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=/home/marcuxo/Desktop/IARITH/arquivos_quartus/simulation/qsim/ IARITH -c IARITH
 
 
 
